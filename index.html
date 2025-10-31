@@ -1,0 +1,179 @@
+<!-- ================= Amasa Bruce • Hero ================= -->
+<section id="amasa-hero" aria-label="Hero — Amasa Bruce Drums">
+  <style>
+    /* ---- Tokens ---- */
+    #amasa-hero{
+      --ink:#0f0f10;
+      --dim:#5d6067;
+      --orange:#ff7a1a;          /* main orange */
+      --orange-900:#c85000;      /* darker hover */
+      --bg:#fffdf9;
+      --panel:#ffffff;
+      --line:#eeeeee;
+      --radius:18px;
+      --shadow:0 18px 48px rgba(0,0,0,.12);
+      font:16px/1.5 system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(135deg,#fff8ef 0%, #fff 42%);
+    }
+    #amasa-hero *{box-sizing:border-box}
+
+    /* ---- Layout ---- */
+    #amasa-hero .wrap{
+      max-width:1200px;
+      margin:clamp(14px,4vw,36px) auto;
+      padding:0 clamp(14px,3.5vw,28px);
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:clamp(16px,3vw,28px);
+      align-items:center;
+    }
+    @media (max-width:900px){
+      #amasa-hero .wrap{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+    }
+
+    /* ---- Text block ---- */
+    #amasa-hero .lead{
+      padding:clamp(12px,2vw,22px);
+    }
+    #amasa-hero .brand{
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:.02em;
+      color:var(--orange);
+      background:linear-gradient(90deg,var(--orange), #ffb366);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      font-size:clamp(14px,1.8vw,16px);
+      text-transform:uppercase;
+    }
+    #amasa-hero h1{
+      margin:.25em 0 .2em;
+      font-weight:800; letter-spacing:-.02em;
+      font-size:clamp(28px,4.8vw,56px);
+      line-height:1.06;
+      color:var(--ink);
+    }
+    #amasa-hero .tagline{
+      font-size:clamp(15px,2.1vw,20px);
+      color:#1a1a1b; opacity:.9;
+      margin:0 0 16px;
+    }
+
+    /* ---- Service chips ---- */
+    #amasa-hero .chips{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin:10px 0 22px;
+    }
+    #amasa-hero .chip{
+      border:1px solid var(--line);
+      padding:8px 12px; border-radius:999px;
+      background:#fffaf5;
+      box-shadow:0 1px 0 #00000008;
+      font-size:13px; color:#4a4d55;
+    }
+
+    /* ---- CTAs ---- */
+    #amasa-hero .ctas{ display:flex; flex-wrap:wrap; gap:12px; }
+    #amasa-hero .btn{
+      appearance:none; border:none; cursor:pointer; text-decoration:none;
+      padding:12px 16px; border-radius:12px; font-weight:700;
+      box-shadow:var(--shadow); transform:translateZ(0);
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    #amasa-hero .btn.primary{
+      background:linear-gradient(180deg,var(--orange),var(--orange-900));
+      color:#fff;
+    }
+    #amasa-hero .btn.secondary{
+      background:#fff; color:#1a1a1b; border:1px solid var(--line);
+    }
+    #amasa-hero .btn:hover{ transform:translateY(-1px); }
+    #amasa-hero .btn:active{ transform:translateY(0); }
+
+    /* ---- Image stack ---- */
+    #amasa-hero .shots{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      gap:14px;
+    }
+    #amasa-hero figure{
+      margin:0; position:relative; overflow:hidden; border-radius:var(--radius);
+      box-shadow:var(--shadow); background:#000;
+      aspect-ratio: 4/3;
+    }
+    #amasa-hero .shots figure:first-child{ grid-column:1 / span 2; aspect-ratio: 16/9; }
+    #amasa-hero img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      filter:saturate(1.05) contrast(1.05);
+    }
+    #amasa-hero .glow{
+      position:absolute; inset:0;
+      background:radial-gradient(80% 60% at 20% 20%, #ff7a1a33 0%, transparent 55%) ,
+                 radial-gradient(80% 60% at 80% 80%, #ffb3662b 0%, transparent 60%);
+      pointer-events:none;
+    }
+
+    /* ---- Footer row under hero (optional quick links) ---- */
+    #amasa-hero .mini{
+      max-width:1200px; margin:12px auto 0; padding:0 clamp(14px,3.5vw,28px) 8px;
+      display:flex; gap:18px; flex-wrap:wrap; color:var(--dim); font-size:13px;
+    }
+    #amasa-hero .mini a{ color:var(--orange-900); text-underline-offset:2px; }
+  </style>
+
+  <div class="wrap">
+    <!-- Left: copy -->
+    <div class="lead">
+      <span class="brand">Cavalry Sounds • Amasa Bruce</span>
+      <h1>Professional Drummer for Hire</h1>
+      <p class="tagline">In the pocket. On time.</p>
+
+      <div class="chips" aria-label="Core services">
+        <span class="chip">Lessons</span>
+        <span class="chip">Touring</span>
+        <span class="chip">Studio Sessions</span>
+        <span class="chip">Backline &amp; Sound</span>
+        <span class="chip">Live Band</span>
+      </div>
+
+      <div class="ctas">
+        <!-- Update these anchors as you build out pages -->
+        <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
+        <a class="btn secondary" href="#rates">View Rates</a>
+      </div>
+    </div>
+
+    <!-- Right: image stack -->
+    <div class="shots" aria-label="Performance photos">
+      <figure>
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w"
+          alt="Amasa Bruce performing on drums — wide shot">
+        <span class="glow" aria-hidden="true"></span>
+      </figure>
+      <figure>
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
+          alt="Close-up of Amasa Bruce playing drums">
+        <span class="glow" aria-hidden="true"></span>
+      </figure>
+      <figure>
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w"
+          alt="Stage performance — Amasa on kit">
+        <span class="glow" aria-hidden="true"></span>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Optional quick links under the hero -->
+  <div class="mini">
+    <span>Based at <strong>CavalrySounds.com</strong></span>
+    <span>IG: <a href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Gtm_masa</a></span>
+    <span>YouTube: <a href="#" target="_blank" rel="noopener">Amasa&nbsp;Bruce</a></span>
+  </div>
+</section>
