@@ -1,56 +1,50 @@
-<!-- ============= AMASA BRUCE • ULTRA HERO + PRO CONTACT (SVG HEAVY, NO DUPES) ============= -->
+<!-- ============= AMASA BRUCE • HERO (Centered + No-Cutoff) ============= -->
 <section id="amasa-hero"
   data-img-1="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=1500w"
   data-img-2="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=1000w"
   aria-label="Hero — Amasa Bruce Drums">
   <style>
-    /* ================= TOKENS ================= */
+    /* ===== Base + containment fixes ===== */
     #amasa-hero{
       --ink:#0e0f10; --dim:#8b8f99;
-      --orange:#ff7a1a; --orange-2:#ff9a4a; --orange-3:#ffb57b; --orange-dark:#b84e00;
-      --bg:#0b0c0f; --panel:#0c0d11d9; --line:#ffffff20; --radius:20px;
+      --orange:#ff7a1a; --orange-dark:#b84e00;
+      --panel:#0c0d11d9; --line:#ffffff20; --radius:20px;
       --shadow:0 28px 80px rgba(0,0,0,.35);
-      color:#fff; font:16px/1.55 system-ui,-apple-system,Inter,Roboto,Arial,sans-serif;
-      position:relative; overflow:hidden; isolation:isolate; background:var(--bg);
+      background:#0b0c0f; color:#fff;
+      position:relative; isolation:isolate;
+      overflow:hidden;               /* ✅ nothing spills off */
+      padding:clamp(24px,4vw,40px) clamp(16px,4vw,32px); /* ✅ safe edge padding */
     }
-    #amasa-hero *{box-sizing:border-box}
+    #amasa-hero *{ box-sizing:border-box }
 
-    /* ================= BACKGROUND ================= */
-    /* animated gradient mesh via SVG below */
-    #amasa-hero .bg{ position:absolute; inset:0; z-index:0; }
+    /* ===== Centered container ===== */
+    #amasa-hero .wrap{
+      width:min(1200px, 100%);       /* ✅ max width */
+      margin-inline:auto;            /* ✅ centered */
+      display:grid; gap:clamp(16px,3vw,28px);
+      grid-template-columns: 1.05fr .95fr;
+      align-items:center;
+      z-index:2; position:relative;
+    }
+    @media (max-width:920px){ #amasa-hero .wrap{ grid-template-columns:1fr } }
 
-    /* grain overlay */
+    /* ===== Background (kept from last version) ===== */
+    #amasa-hero .bg, #amasa-hero .waves{ position:absolute; inset:0; z-index:0; }
     #amasa-hero .grain{
       position:absolute; inset:-20%; z-index:0; pointer-events:none; opacity:.09; mix-blend:overlay;
-      background-image:url('data:image/svg+xml;utf8,\
-        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">\
-          <filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/></filter>\
-          <rect width="100%" height="100%" filter="url(%23f)"/></svg>');
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
       background-size:300px 300px; animation:grain 1.8s steps(2) infinite;
     }
     @keyframes grain{ to{ transform:translate3d(-3%,1%,0) } }
 
-    /* audio wave path lines */
-    #amasa-hero .waves{ position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.55; }
-
-    /* ================= LAYOUT ================= */
-    #amasa-hero .wrap{
-      width:min(1250px,94vw); margin:clamp(22px,5vw,48px) auto;
-      display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(16px,3vw,28px); align-items:center;
-      position:relative; z-index:2;
-    }
-    @media (max-width:920px){ #amasa-hero .wrap{ grid-template-columns:1fr } }
-
-    /* ================= LEFT : COPY ================= */
+    /* ===== Left: copy card ===== */
     #amasa-hero .card{
       background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:clamp(18px,3.2vw,30px);
-      backdrop-filter:saturate(1.2) blur(10px);
+      box-shadow:var(--shadow); padding:clamp(18px,3.2vw,30px); backdrop-filter:saturate(1.2) blur(10px);
     }
     #amasa-hero .brand{
-      display:inline-flex; align-items:center; gap:10px; text-transform:uppercase; font-weight:800;
-      letter-spacing:.03em; font-size:13px;
-      background:linear-gradient(90deg,#fff,var(--orange-3),var(--orange)); -webkit-background-clip:text; background-clip:text; color:transparent;
+      display:inline-flex; gap:10px; text-transform:uppercase; font-weight:800; letter-spacing:.03em; font-size:13px;
+      background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a); -webkit-background-clip:text; background-clip:text; color:transparent;
     }
     #amasa-hero h1{ margin:.25em 0 .15em; font-size:clamp(32px,5vw,64px); line-height:1.03; font-weight:950 }
     #amasa-hero .tag{ margin:0 0 14px; font-size:clamp(15px,2vw,20px); color:#ffe6cf }
@@ -67,82 +61,51 @@
     #amasa-hero .btn.secondary{ background:#ffffff12; color:#fff; border:1px solid var(--line) }
     #amasa-hero .btn:hover{ transform:translateY(-1px); filter:brightness(1.06) }
 
-    /* marquee */
-    #amasa-hero .marquee{ margin-top:14px; overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line) }
-    #amasa-hero .track{ display:flex; gap:28px; padding:10px 0; white-space:nowrap; animation:scroll 18s linear infinite; color:#ffd4ac; font-weight:800; letter-spacing:.02em }
-    #amasa-hero .dot{ opacity:.6; margin:0 6px }
-    @keyframes scroll{ from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
-    @media (prefers-reduced-motion:reduce){ #amasa-hero .track{ animation:none } }
-
-    /* ================= RIGHT : IMAGE SCULPT ================= */
-    #amasa-hero .sculpt{ position:relative; min-height:520px }
+    /* ===== Right: sculpted images — centered, never off-screen ===== */
+    #amasa-hero .sculpt{
+      position:relative;
+      width:100%;
+      min-height:520px;
+      display:grid;
+      place-items:center;            /* ✅ center children */
+    }
     @media (max-width:920px){ #amasa-hero .sculpt{ min-height:420px } }
 
-    /* tiles are purely SVG-masked; zero CSS aspect hacks */
-    #amasa-hero .tile{
-      position:absolute; inset:auto; overflow:visible; filter:drop-shadow(0 20px 60px rgba(0,0,0,.45));
+    #amasa-hero .tile{ position:absolute; inset:auto; filter:drop-shadow(0 20px 60px rgba(0,0,0,.45)) }
+    /* Main arc: centered */
+    #amasa-hero .tile.main{
+      width:min(560px, 92vw);        /* ✅ hard cap + responsive */
+      left:50%; top:0; transform:translateX(-50%);
     }
-    /* main arc (top-right) */
-    #amasa-hero .tile.main{ right:-2%; top:-4%; width:min(54vw,560px) }
-    /* film strip diagonal (bottom-left) */
-    #amasa-hero .tile.strip{ left:-4%; bottom:-6%; width:min(48vw,520px) rotate: -6deg }
-    /* if image 2 duplicates image 1, we’ll flip to gradient tile via JS */
-    #amasa-hero .tile.alt{ display:none; left:6%; top:46%; width:min(44vw,480px) rotate:5deg }
+    /* Diagonal strip: centered + rotated, but still contained */
+    #amasa-hero .tile.strip{
+      width:min(520px, 88vw);
+      left:50%; bottom:-12px;        /* slight bleed inside the container */
+      transform:translateX(-50%) rotate(-6deg);
+    }
+    /* Alt gradient tile (only shows if we hide strip for dupes) */
+    #amasa-hero .tile.alt{
+      display:none;
+      width:min(480px, 84vw);
+      left:50%; top:48%;
+      transform:translate(-50%,-50%) rotate(3deg);
+    }
 
-    /* footer micro links */
-    #amasa-hero .mini{ width:min(1250px,94vw); margin:8px auto 0; color:#ffd9ba; opacity:.95; font-size:13px; display:flex; gap:18px; flex-wrap:wrap; z-index:2; position:relative }
+    /* ===== Footer micro-links ===== */
+    #amasa-hero .mini{
+      width:min(1200px,100%); margin:8px auto 0;
+      color:#ffd9ba; opacity:.95; font-size:13px; display:flex; gap:18px; flex-wrap:wrap; z-index:2; position:relative;
+      padding-inline:clamp(16px,4vw,32px);   /* ✅ respect edges */
+    }
     #amasa-hero .mini a{ color:#ffd0a3; text-underline-offset:2px }
-
-    /* ================= CONTACT ================= */
-    #contact{
-      width:min(1250px,94vw); margin:26px auto 48px; position:relative; z-index:2;
-      display:grid; grid-template-columns:1fr .9fr; gap:clamp(16px,3vw,28px);
-    }
-    @media (max-width:920px){ #contact{ grid-template-columns:1fr } }
-
-    #contact .panel{
-      background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:clamp(18px,3.2vw,28px); backdrop-filter:saturate(1.1) blur(10px);
-    }
-    #contact h2{ margin:0 0 4px; font-size:clamp(22px,3.4vw,32px) }
-    #contact p.sub{ margin:0 0 16px; color:var(--dim) }
-
-    #contact .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px }
-    @media (max-width:680px){ #contact .row{ grid-template-columns:1fr } }
-
-    #contact .field{ display:flex; gap:10px; align-items:center; border:1px solid var(--line); border-radius:14px; padding:10px 12px; background:#ffffff08 }
-    #contact .field svg{ flex:0 0 20px; opacity:.85 }
-    #contact input, #contact textarea{
-      background:transparent; border:none; outline:none; color:#fff; font:inherit; width:100%;
-    }
-    #contact textarea{ min-height:140px; resize:vertical }
-    #contact .btn{ margin-top:10px }
-
-    /* right column: quick links */
-    #contact .aside{ display:grid; gap:10px; align-content:start }
-    #contact .pill{
-      display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
-      border:1px solid var(--line); color:#fff; text-decoration:none; background:#ffffff10
-    }
-    #contact .pill:hover{ filter:brightness(1.06) }
-    #contact .note{ color:#ffd8b6; font-size:13px; opacity:.95; margin-top:6px }
   </style>
 
-  <!-- ===== SVG BACKGROUND (animated radial mesh + subtle wave) ===== -->
+  <!-- Background SVGs (same vibe, centered by container) -->
   <svg class="bg" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
     <defs>
-      <radialGradient id="g1" cx="10%" cy="15%" r="60%">
-        <stop offset="0" stop-color="#2b1400"/>
-        <stop offset=".55" stop-color="#0b0c0f00"/>
-      </radialGradient>
-      <radialGradient id="g2" cx="90%" cy="18%" r="58%">
-        <stop offset="0" stop-color="#ffb57b"/>
-        <stop offset=".62" stop-color="#0b0c0f00"/>
-      </radialGradient>
-      <radialGradient id="g3" cx="50%" cy="92%" r="65%">
-        <stop offset="0" stop-color="#ff8b32"/>
-        <stop offset=".65" stop-color="#0b0c0f00"/>
-      </radialGradient>
+      <radialGradient id="g1" cx="10%" cy="15%" r="60%"><stop offset="0" stop-color="#2b1400"/><stop offset=".55" stop-color="#0b0c0f00"/></radialGradient>
+      <radialGradient id="g2" cx="90%" cy="18%" r="58%"><stop offset="0" stop-color="#ffb57b"/><stop offset=".62" stop-color="#0b0c0f00"/></radialGradient>
+      <radialGradient id="g3" cx="50%" cy="92%" r="65%"><stop offset="0" stop-color="#ff8b32"/><stop offset=".65" stop-color="#0b0c0f00"/></radialGradient>
     </defs>
     <rect width="1200" height="800" fill="#0b0c0f"/>
     <rect width="1200" height="800" fill="url(#g1)">
@@ -160,134 +123,93 @@
   </svg>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- AUDIO WAVES -->
   <svg class="waves" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
-    <path id="wave"
-      d="M0,640 C120,610 240,700 360,660 480,620 600,720 720,680 840,640 960,700 1080,670 1140,655 1200,640 1200,640"
-      fill="none" stroke="url(#waveGrad)" stroke-width="2"/>
     <defs>
       <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#ffb57b" stop-opacity=".55"/>
-        <stop offset="1" stop-color="#ff7a1a" stop-opacity=".75"/>
+        <stop offset="0" stop-color="#ffb57b" stop-opacity=".55"/><stop offset="1" stop-color="#ff7a1a" stop-opacity=".75"/>
       </linearGradient>
     </defs>
+    <path id="wave" d="M0,640 C120,610 240,700 360,660 480,620 600,720 720,680 840,640 960,700 1080,670 1140,655 1200,640 1200,640"
+          fill="none" stroke="url(#waveGrad)" stroke-width="2"/>
     <animate xlink:href="#wave" attributeName="d"
-      values="
-      M0,640 C120,610 240,700 360,660 480,620 600,720 720,680 840,640 960,700 1080,670 1140,655 1200,640 1200,640;
-      M0,645 C120,675 240,620 360,680 480,640 600,700 720,660 840,650 960,690 1080,650 1140,635 1200,640 1200,640;
-      M0,640 C120,610 240,700 360,660 480,620 600,720 720,680 840,640 960,700 1080,670 1140,655 1200,640 1200,640"
+      values="M0,640 C120,610 240,700 360,660 480,620 600,720 720,680 840,640 960,700 1080,670 1140,655 1200,640 1200,640;
+              M0,645 C120,675 240,620 360,680 480,640 600,700 720,660 840,650 960,690 1080,650 1140,635 1200,640 1200,640;
+              M0,640 C120,610 240,700 360,660 480,620 600,720 720,680 840,640 960,700 1080,670 1140,655 1200,640 1200,640"
       dur="14s" repeatCount="indefinite"/>
   </svg>
 
-  <!-- ============= FOREGROUND ============= -->
+  <!-- ===== Foreground ===== -->
   <div class="wrap">
-    <!-- LEFT -->
+    <!-- Left: copy -->
     <div class="card">
       <span class="brand">Cavalry Sounds • Amasa Bruce</span>
       <h1>Professional Drummer for Hire</h1>
       <p class="tag">In the pocket. On time.</p>
-
       <div class="chips" aria-label="Core services">
         <span class="chip">Lessons</span><span class="chip">Touring</span>
         <span class="chip">Studio Sessions</span><span class="chip">Backline &amp; Sound</span>
         <span class="chip">Live Band</span>
       </div>
-
       <div class="ctas">
         <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
-        <a class="btn secondary" href="#contact">Contact</a>
-      </div>
-
-      <div class="marquee" aria-hidden="true">
-        <div class="track">
-          <span>R&amp;B</span><span class="dot">•</span><span>Funk</span><span class="dot">•</span>
-          <span>Hip-Hop</span><span class="dot">•</span><span>Pop</span><span class="dot">•</span>
-          <span>Gospel</span><span class="dot">•</span><span>Studio</span><span class="dot">•</span>
-          <span>Tours</span><span class="dot">•</span><span>Lessons</span>
-          <span>R&amp;B</span><span class="dot">•</span><span>Funk</span><span class="dot">•</span>
-          <span>Hip-Hop</span><span class="dot">•</span><span>Pop</span><span class="dot">•</span>
-          <span>Gospel</span><span class="dot">•</span><span>Studio</span><span class="dot">•</span>
-          <span>Tours</span><span class="dot">•</span><span>Lessons</span>
-        </div>
+        <a class="btn secondary" href="#rates">View Rates</a>
       </div>
     </div>
 
-    <!-- RIGHT : SCULPTED IMAGES (NO DUPES) -->
+    <!-- Right: images (centered, capped, non-duplicating) -->
     <div class="sculpt" aria-label="Performance images">
-      <!-- Arc-masked hero -->
+      <!-- Main arc -->
       <div class="tile main">
         <svg viewBox="0 0 900 620" width="100%" aria-hidden="true">
           <defs>
-            <clipPath id="arcMask">
-              <path d="M0,0 H900 V520 Q660,620 420,520 Q180,420 0,520 Z" />
-            </clipPath>
+            <clipPath id="arcMask"><path d="M0,0 H900 V520 Q660,620 420,520 Q180,420 0,520 Z"/></clipPath>
             <filter id="duo" color-interpolation-filters="sRGB">
               <feColorMatrix type="matrix"
-                values="0.9 0.1 0   0 0
-                        0.3 0.7 0   0 0
-                        0   0.08 0.9 0 0
-                        0   0   0   1 0"/>
+                values="0.9 0.1 0 0 0  0.3 0.7 0 0 0  0 0.08 0.9 0 0  0 0 0 1 0"/>
               <feComponentTransfer>
-                <feFuncR type="gamma" amplitude="1.1" exponent="1.0" offset="0"/>
-                <feFuncG type="gamma" amplitude="1.05" exponent="1.0" offset="0"/>
-                <feFuncB type="gamma" amplitude="1.0" exponent="1.0" offset="0"/>
+                <feFuncR type="gamma" amplitude="1.1" exponent="1" offset="0"/>
+                <feFuncG type="gamma" amplitude="1.05" exponent="1" offset="0"/>
+                <feFuncB type="gamma" amplitude="1" exponent="1" offset="0"/>
               </feComponentTransfer>
             </filter>
-          </defs>
-          <image id="imgMain" width="900" height="620" preserveAspectRatio="xMidYMid slice" clip-path="url(#arcMask)" filter="url(#duo)"/>
-          <!-- glossy pass -->
-          <path d="M0,0 H900 V520 Q660,620 420,520 Q180,420 0,520 Z" fill="url(#sh)"
-                opacity=".2"/>
-          <defs>
             <linearGradient id="sh" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffffff" stop-opacity=".25"/>
-              <stop offset=".6" stop-color="#000000" stop-opacity="0"/>
+              <stop offset="0" stop-color="#ffffff" stop-opacity=".25"/><stop offset=".6" stop-color="#000000" stop-opacity="0"/>
             </linearGradient>
           </defs>
+          <image id="imgMain" width="900" height="620" preserveAspectRatio="xMidYMid slice" clip-path="url(#arcMask)" filter="url(#duo)"/>
+          <path d="M0,0 H900 V520 Q660,620 420,520 Q180,420 0,520 Z" fill="url(#sh)" opacity=".2"/>
         </svg>
       </div>
 
-      <!-- Film strip diagonal -->
-      <div class="tile strip">
+      <!-- Diagonal strip (centered + rotated, but constrained) -->
+      <div class="tile strip" id="stripTile">
         <svg viewBox="0 0 900 560" width="100%" aria-hidden="true">
           <defs>
             <clipPath id="stripMask">
               <rect x="40" y="40" width="820" height="480" rx="32"/>
-              <circle cx="90" cy="70" r="8"/>
-              <circle cx="810" cy="70" r="8"/>
-              <circle cx="90" cy="490" r="8"/>
-              <circle cx="810" cy="490" r="8"/>
+              <circle cx="90" cy="70" r="8"/><circle cx="810" cy="70" r="8"/>
+              <circle cx="90" cy="490" r="8"/><circle cx="810" cy="490" r="8"/>
             </clipPath>
-          </defs>
-          <rect x="0" y="0" width="900" height="560" fill="#000" rx="40"/>
-          <image id="imgStrip" x="40" y="40" width="820" height="480"
-                 preserveAspectRatio="xMidYMid slice" clip-path="url(#stripMask)"/>
-          <rect x="0" y="0" width="900" height="560" fill="url(#gradEdge)" opacity=".35" rx="40"/>
-          <defs>
             <linearGradient id="gradEdge" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#ff7a1a"/>
-              <stop offset="1" stop-color="#ffb57b" stop-opacity=".4"/>
+              <stop offset="0" stop-color="#ff7a1a"/><stop offset="1" stop-color="#ffb57b" stop-opacity=".4"/>
             </linearGradient>
           </defs>
+          <rect x="0" y="0" width="900" height="560" fill="#000" rx="40"/>
+          <image id="imgStrip" x="40" y="40" width="820" height="480" preserveAspectRatio="xMidYMid slice" clip-path="url(#stripMask)"/>
+          <rect x="0" y="0" width="900" height="560" fill="url(#gradEdge)" opacity=".35" rx="40"/>
         </svg>
       </div>
 
-      <!-- Fallback gradient tile (auto shown if image 2 duplicates image 1) -->
+      <!-- Fallback gradient tile (shown if image 2 duplicates image 1) -->
       <div class="tile alt" id="gradTile">
         <svg viewBox="0 0 900 520" width="100%" aria-hidden="true">
           <defs>
             <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#ffb57b"/>
-              <stop offset=".6" stop-color="#ff7a1a"/>
-              <stop offset="1" stop-color="#b84e00"/>
+              <stop offset="0" stop-color="#ffb57b"/><stop offset=".6" stop-color="#ff7a1a"/><stop offset="1" stop-color="#b84e00"/>
             </linearGradient>
           </defs>
           <rect width="900" height="520" rx="36" fill="url(#gA)"/>
-          <g opacity=".22">
-            <circle cx="140" cy="120" r="60" fill="#fff"/>
-            <circle cx="740" cy="420" r="80" fill="#fff"/>
-            <circle cx="420" cy="260" r="90" fill="#fff"/>
-          </g>
+          <g opacity=".22"><circle cx="140" cy="120" r="60" fill="#fff"/><circle cx="740" cy="420" r="80" fill="#fff"/><circle cx="420" cy="260" r="90" fill="#fff"/></g>
           <text x="50%" y="52%" text-anchor="middle" fill="#fff" style="font:700 28px/1 system-ui">Sessions • Tours • Lessons</text>
         </svg>
       </div>
@@ -297,92 +219,25 @@
   <div class="mini">
     <span>Based at <strong>CavalrySounds.com</strong></span>
     <span>IG: <a href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">@Gtm_masa</a></span>
-    <span>Email: <a href="#contact">bruce_amasa@yahoo.com</a></span>
+    <span>Email: <a href="mailto:bruce_amasa@yahoo.com">bruce_amasa@yahoo.com</a></span>
   </div>
-
-  <!-- ================= PRO CONTACT (FormSubmit — works on GitHub Pages) ================= -->
-  <section id="contact" aria-label="Contact — Amasa Bruce">
-    <div class="panel">
-      <h2>Contact</h2>
-      <p class="sub">Tell me about your project — date, location, set length, and any backline needs.</p>
-
-      <!-- Replace action with your email if you want direct forwarding -->
-      <form action="https://formsubmit.co/bruce_amasa@yahoo.com" method="POST" autocomplete="on">
-        <!-- FormSubmit options -->
-        <input type="hidden" name="_subject" value="Booking / Lessons — Amasa Bruce">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://cavalrysounds.com/thanks.html">
-        <!-- honeypot -->
-        <input type="text" name="_honey" style="display:none">
-
-        <div class="row">
-          <label class="field">
-            <!-- user icon -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5C21 16.5 17 14 12 14Z" fill="#ffd9b3"/></svg>
-            <input type="text" name="Name" placeholder="Your name" required>
-          </label>
-          <label class="field">
-            <!-- mail icon -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1l-10 6L2 7Z" fill="#ffd9b3"/><path d="M2 9l10 6 10-6v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z" fill="#ffb57b"/></svg>
-            <input type="email" name="Email" placeholder="you@example.com" required>
-          </label>
-        </div>
-
-        <div class="row">
-          <label class="field">
-            <!-- calendar -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 2v3M17 2v3M3 9h18M5 6h14a2 2 0 0 1 2 2v12H3V8a2 2 0 0 1 2-2Z" stroke="#ffb57b" stroke-width="2"/></svg>
-            <input type="text" name="Date / Location" placeholder="Date(s) & location">
-          </label>
-          <label class="field">
-            <!-- music note -->
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 4v11.2a3.2 3.2 0 1 1-2-3V6l10-2v9.2a3.2 3.2 0 1 1-2-3V4L9 6Z" fill="#ff9a4a"/></svg>
-            <input type="text" name="Service" placeholder="Lessons / Session / Tour / Band">
-          </label>
-        </div>
-
-        <label class="field" style="grid-column:1/-1">
-          <!-- message icon -->
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v10H7l-3 3V5Z" stroke="#ffd9b3" stroke-width="2"/></svg>
-          <textarea name="Message" placeholder="Set length, genre, gear/backline notes…" required></textarea>
-        </label>
-
-        <button class="btn primary" type="submit">Send Request</button>
-      </form>
-    </div>
-
-    <div class="panel aside">
-      <a class="pill" href="mailto:bruce_amasa@yahoo.com">
-        <!-- email -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1l-10 6L2 7Z" fill="#ffb57b"/></svg>
-        bruce_amasa@yahoo.com
-      </a>
-      <a class="pill" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">
-        <!-- ig -->
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 5 5 5 5 0 0 0-5-5Zm6-1a1 1 0 1 0 1 1 1 1 0 0 0-1-1Z" fill="#ff9a4a"/></svg>
-        @Gtm_masa
-      </a>
-      <div class="note">No spam. You’ll get a fast reply with availability and a quote.</div>
-    </div>
-  </section>
 
   <!-- ===== JS: set images + auto-fallback if duplicate ===== -->
   <script>
     (function(){
       const root = document.getElementById('amasa-hero');
-      const s1 = root.dataset.img1 || root.getAttribute('data-img-1') || '';
-      const s2 = root.dataset.img2 || root.getAttribute('data-img-2') || '';
-      // place images into SVG <image> tags
+      const s1 = root.getAttribute('data-img-1') || '';
+      const s2 = root.getAttribute('data-img-2') || '';
       const m = root.querySelector('#imgMain');
       const s = root.querySelector('#imgStrip');
-      if (m) m.setAttributeNS('http://www.w3.org/1999/xlink', 'href', s1);
+      const strip = root.querySelector('#stripTile');
+      const alt = root.querySelector('#gradTile');
+
+      if (m) m.setAttributeNS('http://www.w3.org/1999/xlink','href', s1);
       if (s2 && s2 !== s1) {
-        s && s.setAttributeNS('http://www.w3.org/1999/xlink', 'href', s2);
+        s && s.setAttributeNS('http://www.w3.org/1999/xlink','href', s2);
+        if (alt) alt.style.display = 'none';
       } else {
-        // no second or duplicate: hide strip, reveal gradient tile
-        const strip = root.querySelector('.tile.strip');
-        const alt = root.querySelector('#gradTile');
         if (strip) strip.style.display = 'none';
         if (alt) alt.style.display = 'block';
       }
