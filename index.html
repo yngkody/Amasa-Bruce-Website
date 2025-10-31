@@ -1,12 +1,12 @@
-<!-- ================= Amasa Bruce • Hero ================= -->
+<<!-- ================= Amasa Bruce • Hero (Fixed Aspect Ratio Fill) ================= -->
 <section id="amasa-hero" aria-label="Hero — Amasa Bruce Drums">
   <style>
     /* ---- Tokens ---- */
     #amasa-hero{
       --ink:#0f0f10;
       --dim:#5d6067;
-      --orange:#ff7a1a;          /* main orange */
-      --orange-900:#c85000;      /* darker hover */
+      --orange:#ff7a1a;
+      --orange-900:#c85000;
       --bg:#fffdf9;
       --panel:#ffffff;
       --line:#eeeeee;
@@ -93,7 +93,7 @@
     #amasa-hero .btn:hover{ transform:translateY(-1px); }
     #amasa-hero .btn:active{ transform:translateY(0); }
 
-    /* ---- Image stack ---- */
+    /* ---- Image stack (fixed aspect ratio fill) ---- */
     #amasa-hero .shots{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -101,13 +101,27 @@
       gap:14px;
     }
     #amasa-hero figure{
-      margin:0; position:relative; overflow:hidden; border-radius:var(--radius);
-      box-shadow:var(--shadow); background:#000;
-      aspect-ratio: 4/3;
+      margin:0;
+      position:relative;
+      overflow:hidden;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      background:#000;
+      width:100%;
+      height:auto;
+      min-height:220px;
     }
-    #amasa-hero .shots figure:first-child{ grid-column:1 / span 2; aspect-ratio: 16/9; }
+    #amasa-hero .shots figure:first-child{
+      grid-column:1 / span 2;
+      height:auto;
+      min-height:360px;
+    }
     #amasa-hero img{
-      width:100%; height:100%; object-fit:cover; display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      aspect-ratio:auto;
       filter:saturate(1.05) contrast(1.05);
     }
     #amasa-hero .glow{
@@ -117,10 +131,13 @@
       pointer-events:none;
     }
 
-    /* ---- Footer row under hero (optional quick links) ---- */
+    /* ---- Footer row under hero ---- */
     #amasa-hero .mini{
-      max-width:1200px; margin:12px auto 0; padding:0 clamp(14px,3.5vw,28px) 8px;
-      display:flex; gap:18px; flex-wrap:wrap; color:var(--dim); font-size:13px;
+      max-width:1200px;
+      margin:12px auto 0;
+      padding:0 clamp(14px,3.5vw,28px) 8px;
+      display:flex; gap:18px; flex-wrap:wrap;
+      color:var(--dim); font-size:13px;
     }
     #amasa-hero .mini a{ color:var(--orange-900); text-underline-offset:2px; }
   </style>
@@ -141,7 +158,6 @@
       </div>
 
       <div class="ctas">
-        <!-- Update these anchors as you build out pages -->
         <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
         <a class="btn secondary" href="#rates">View Rates</a>
       </div>
@@ -170,174 +186,12 @@
     </div>
   </div>
 
-  <!-- Optional quick links under the hero -->
   <div class="mini">
     <span>Based at <strong>CavalrySounds.com</strong></span>
     <span>IG: <a href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Gtm_masa</a></span>
     <span>YouTube: <a href="#" target="_blank" rel="noopener">Amasa&nbsp;Bruce</a></span>
   </div>
 </section>
-
-<!-- ================= Amasa Bruce • Rates ================= -->
-<section id="rates" aria-label="Rates — Amasa Bruce Drums">
-  <style>
-    #rates{
-      --ink:#0f0f10; --dim:#5d6067; --orange:#ff7a1a; --orange-900:#c85000;
-      --bg:#fffdf9; --panel:#ffffff; --line:#e9e9e9; --radius:18px;
-      --shadow:0 16px 44px rgba(0,0,0,.10);
-      background:linear-gradient(180deg,#fffaf3 0%, #ffffff 80%);
-      color:var(--ink); font:16px/1.5 system-ui,-apple-system,Inter,Roboto,Arial,sans-serif;
-      padding:clamp(28px,6vw,72px) 0;
-    }
-    #rates .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(14px,3.5vw,28px)}
-    #rates h2{font-size:clamp(24px,4vw,40px);letter-spacing:-.02em;margin:0 0 8px}
-    #rates p.sub{color:var(--dim);margin:0 0 24px}
-
-    #rates .grid{
-      display:grid; gap:clamp(14px,2.8vw,22px);
-      grid-template-columns: repeat(12, 1fr);
-    }
-    #rates .card{
-      grid-column: span 4;
-      background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:clamp(16px,2.4vw,22px);
-      display:flex; flex-direction:column; gap:10px;
-    }
-    #rates .card .title{font-weight:800}
-    #rates .price{font-size:clamp(20px,2.6vw,28px); font-weight:800; color:var(--orange)}
-    #rates .meta{color:var(--dim); font-size:14px}
-    #rates .cta{
-      margin-top:auto; display:inline-flex; align-items:center; gap:10px;
-      text-decoration:none; padding:12px 14px; border-radius:12px;
-      background:linear-gradient(180deg,var(--orange),var(--orange-900)); color:#fff;
-      box-shadow:var(--shadow); font-weight:700;
-    }
-    @media (max-width:1000px){ #rates .card{grid-column: span 6} }
-    @media (max-width:640px){ #rates .card{grid-column: span 12} }
-  </style>
-
-  <div class="wrap">
-    <h2>Rates</h2>
-    <p class="sub">Transparent pricing for lessons, sessions, live shows, and rentals.</p>
-
-    <div class="grid" role="list">
-      <!-- Lessons -->
-      <article class="card" role="listitem">
-        <div class="title">Online Lessons</div>
-        <div class="price">$35/hr</div>
-        <div class="meta">One-on-one via video. Curriculum tailored to your level.</div>
-        <a class="cta" href="mailto:bruce_amasa@yahoo.com?subject=Online%20Lesson%20Booking%20—%20Amasa%20Bruce">Book lesson</a>
-      </article>
-
-      <!-- Group Lessons -->
-      <article class="card" role="listitem">
-        <div class="title">Group Lessons</div>
-        <div class="price">$10 / person</div>
-        <div class="meta">Priced for a party of 6. Ask about other group sizes.</div>
-        <a class="cta" href="mailto:bruce_amasa@yahoo.com?subject=Group%20Lessons%20Inquiry%20—%20Amasa%20Bruce">Check availability</a>
-      </article>
-
-      <!-- Studio Session -->
-      <article class="card" role="listitem">
-        <div class="title">Studio Session Musician</div>
-        <div class="price">$200</div>
-        <div class="meta">24-hour turnaround on recorded parts (editing & stems included).</div>
-        <a class="cta" href="mailto:bruce_amasa@yahoo.com?subject=Studio%20Session%20—%20Amasa%20Bruce">Start a session</a>
-      </article>
-
-      <!-- Backline & Sound -->
-      <article class="card" role="listitem">
-        <div class="title">Backline &amp; Sound Rentals</div>
-        <div class="price">$500</div>
-        <div class="meta">Quality drum kit/backline & on-site support available.</div>
-        <a class="cta" href="mailto:bruce_amasa@yahoo.com?subject=Backline%20%26%20Sound%20Rental%20—%20Amasa%20Bruce">Reserve gear</a>
-      </article>
-
-      <!-- Live Band -->
-      <article class="card" role="listitem">
-        <div class="title">Live 5-Piece Band</div>
-        <div class="price">Starting at $1,000</div>
-        <div class="meta">Tight, professional ensemble for events, tours, and showcases.</div>
-        <a class="cta" href="mailto:bruce_amasa@yahoo.com?subject=Live%20Band%20Booking%20—%20Amasa%20Bruce">Get a quote</a>
-      </article>
-    </div>
-
-    <p class="sub" style="margin-top:18px">Need something custom (clinics, tour dates, fly-ins)? Email for a tailored quote.</p>
-  </div>
-</section>
-
-<!-- ================= Amasa Bruce • Services ================= -->
-<section id="services" aria-label="Services — Amasa Bruce Drums">
-  <style>
-    #services{
-      --ink:#0f0f10; --dim:#5d6067; --orange:#ff7a1a; --line:#eee; --radius:14px;
-      background:#ffffff; color:var(--ink); padding:clamp(28px,6vw,72px) 0;
-    }
-    #services .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(14px,3.5vw,28px)}
-    #services h2{font-size:clamp(22px,3.6vw,36px);margin:0 0 8px}
-    #services p.sub{color:var(--dim);margin:0 0 22px}
-    #services .list{
-      display:grid; gap:12px; grid-template-columns:repeat(12,1fr);
-    }
-    #services .row{
-      grid-column:span 6; display:flex; gap:14px; align-items:flex-start;
-      padding:14px; border:1px dashed var(--line); border-radius:var(--radius);
-      background:linear-gradient(180deg,#fffaf5, #fff);
-    }
-    #services .icon{
-      width:36px; height:36px; border-radius:10px;
-      background:var(--orange); flex:0 0 36px; display:grid; place-items:center;
-      color:#fff; font-weight:900; font-size:18px;
-    }
-    #services .row h3{margin:0; font-size:18px}
-    #services .row p{margin:4px 0 0; color:var(--dim); font-size:14px}
-    @media (max-width:900px){ #services .row{grid-column:span 12} }
-  </style>
-
-  <div class="wrap">
-    <h2>Services</h2>
-    <p class="sub">From lessons to full band bookings—built around your deadline and budget.</p>
-
-    <div class="list" role="list">
-      <div class="row" role="listitem">
-        <div class="icon">L</div>
-        <div>
-          <h3>Lessons (Online / 1-on-1 / Group)</h3>
-          <p>Technique, time, and musicality for beginners to pros. Group options available.</p>
-        </div>
-      </div>
-      <div class="row" role="listitem">
-        <div class="icon">T</div>
-        <div>
-          <h3>Touring</h3>
-          <p>Reliable drummer with pro attitude for shows, runs, and long-haul tours.</p>
-        </div>
-      </div>
-      <div class="row" role="listitem">
-        <div class="icon">S</div>
-        <div>
-          <h3>Studio Session Musician</h3>
-          <p>Radio-tight drum tracks with fast turnaround and clean stems delivered.</p>
-        </div>
-      </div>
-      <div class="row" role="listitem">
-        <div class="icon">B</div>
-        <div>
-          <h3>Backline &amp; Sound Rentals</h3>
-          <p>Drum kit/backline solutions plus optional on-site setup and support.</p>
-        </div>
-      </div>
-      <div class="row" role="listitem">
-        <div class="icon">5</div>
-        <div>
-          <h3>Live Band for Hire</h3>
-          <p>Five-piece ensemble for events and showcases—tight grooves, pro delivery.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= Amasa Bruce • Contact ================= -->
 <section id="contact" aria-label="Contact — Amasa Bruce Drums">
   <style>
