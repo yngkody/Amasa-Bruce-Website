@@ -1,185 +1,173 @@
-<!-- =============== Amasa Bruce • Hero (Lively, Pro, No Duplicate Photos) =============== -->
-<section id="amasa-hero" aria-label="Hero — Amasa Bruce Drums">
+<!-- ============== AMASA BRUCE • FUN BACKGROUND HERO (No-Dupe Images) ============== -->
+<section id="amasa-hero"
+  data-image-1="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=1500w"
+  data-image-2="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=1000w"
+  aria-label="Hero — Amasa Bruce Drums">
   <style>
-    /* ===== Tokens ===== */
+    /* ================= TOKENS ================= */
     #amasa-hero{
       --ink:#0f0f10;
-      --dim:#5e6169;
+      --dim:#61636b;
       --orange:#ff7a1a;
       --orange-900:#c85000;
-      --cream:#fff8ef;
-      --panel:#ffffff;
-      --line:#ececec;
+      --panel:#0e0f12cc;         /* glass card */
+      --line:#ffffff22;
       --radius:18px;
-      --shadow:0 18px 48px rgba(0,0,0,.12);
-      font:16px/1.5 system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,sans-serif;
-      color:var(--ink);
-      position:relative;
-      overflow:hidden;
+      --shadow:0 24px 64px rgba(0,0,0,.25);
+      --mesh-a:#2a1200;          /* mesh anchors */
+      --mesh-b:#ff7a1a;
+      --mesh-c:#ffb366;
+      --mesh-d:#ffeddc;
+      color:#fff; font:16px/1.5 system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,sans-serif;
+      position:relative; overflow:hidden; isolation:isolate;
+      min-height:86vh; display:grid; place-items:center;
+      background:#0b0c0f;
+    }
+    #amasa-hero *{ box-sizing:border-box }
+
+    /* ================= LAYERS ================= */
+    /* Mesh gradient background */
+    #amasa-hero .mesh{
+      position:absolute; inset:-20% -10% -10% -10%; z-index:0; filter:blur(16px);
       background:
-        radial-gradient(1200px 600px at 10% -10%, #ffdcc0 0%, transparent 60%),
-        radial-gradient(900px 500px at 95% 10%, #ffe4cf 0%, transparent 55%),
-        linear-gradient(180deg,#fff,#fff);
+        radial-gradient(60% 50% at 10% 15%, var(--mesh-b) 0%, transparent 60%),
+        radial-gradient(50% 45% at 85% 20%, var(--mesh-c) 0%, transparent 62%),
+        radial-gradient(70% 55% at 50% 95%, var(--mesh-d) 0%, transparent 65%),
+        linear-gradient(180deg, #121317 0%, #0b0c0f 80%);
+      animation: drift 18s ease-in-out infinite alternate;
     }
-    #amasa-hero *{box-sizing:border-box}
-
-    /* Subtle animated gradient blobs for life */
-    #amasa-hero::before,
-    #amasa-hero::after{
-      content:"";
-      position:absolute; inset:auto auto 0 -15%;
-      width:60vw; height:60vw; pointer-events:none; filter:blur(40px); opacity:.22;
-      background:conic-gradient(from 90deg, #ff7a1a, #ffb77a, #ffd2a8, #ff7a1a);
-      animation:blob 18s linear infinite;
-    }
-    #amasa-hero::after{
-      left:auto; right:-18%; bottom:auto; top:-20%;
-      width:42vw; height:42vw; opacity:.18; animation-duration:22s; animation-direction:reverse;
-    }
-    @keyframes blob{ 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
-
-    /* ===== Layout ===== */
-    #amasa-hero .wrap{
-      max-width:1200px;
-      margin:clamp(14px,4vw,36px) auto;
-      padding:clamp(16px,3.5vw,28px);
-      display:grid; gap:clamp(16px,3vw,28px);
-      grid-template-columns:1.05fr .95fr;
-      align-items:center;
-      position:relative;
-      z-index:1;
-    }
-    @media (max-width:900px){
-      #amasa-hero .wrap{ grid-template-columns:1fr; }
+    @keyframes drift{
+      0%{ transform:translate3d(0,0,0) scale(1) }
+      100%{ transform:translate3d(0,-2%,0) scale(1.03) }
     }
 
-    /* Decorative animated border ring for the whole hero card */
+    /* Cymbal rings (SVG) */
+    #amasa-hero .rings{
+      position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.35;
+      background:
+        radial-gradient(800px 800px at 12% 78%, #ffffff06 30%, transparent 60%),
+        radial-gradient(700px 700px at 88% 18%, #ffffff08 25%, transparent 62%);
+    }
     #amasa-hero .ring{
-      position:absolute; inset:0; border-radius:24px; pointer-events:none;
-      mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
-      -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
-      -webkit-mask-composite:xor; mask-composite:exclude;
-      padding:2px;
+      position:absolute; border:1px solid #ffffff18; border-radius:50%;
+      width:42vmin; height:42vmin; left:6vmin; bottom:12vmin; animation:ringSpin 24s linear infinite;
     }
-    #amasa-hero .ring::before{
-      content:""; position:absolute; inset:0; border-radius:24px;
-      background:linear-gradient(90deg,#ffb77a, #ff7a1a, #ffb366, #ff7a1a);
-      background-size:200% 100%;
-      animation:ring 8s linear infinite;
+    #amasa-hero .ring.big{
+      width:56vmin; height:56vmin; right:8vmin; top:6vmin; left:auto; bottom:auto; animation-duration:32s; animation-direction:reverse;
     }
-    @keyframes ring{ to{ background-position:200% 0 } }
+    @keyframes ringSpin{ to{ transform:rotate(360deg) } }
+    @media (prefers-reduced-motion:reduce){
+      #amasa-hero .mesh, #amasa-hero .ring{ animation:none }
+    }
 
-    /* ===== Left — copy ===== */
-    #amasa-hero .lead{ padding:clamp(10px,1.6vw,16px); }
+    /* Particle notes */
+    #amasa-hero .notes{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+    #amasa-hero .note{
+      position:absolute; font-weight:900; font-size:14px; opacity:.22;
+      animation:float 12s ease-in-out infinite; color:#fff;
+      filter:drop-shadow(0 4px 14px rgba(0,0,0,.3));
+    }
+    @keyframes float{
+      0%,100%{ transform:translateY(0) }
+      50%{ transform:translateY(-10px) }
+    }
+
+    /* ================= CONTENT ================= */
+    #amasa-hero .wrap{
+      width:min(1200px, 92vw); margin:auto; z-index:2;
+      display:grid; grid-template-columns: 1.05fr .95fr; gap:clamp(16px,3vw,28px); align-items:center;
+    }
+    @media (max-width:900px){ #amasa-hero .wrap{ grid-template-columns:1fr } }
+
+    /* Left: glass card */
+    #amasa-hero .card{
+      background:var(--panel); backdrop-filter: blur(10px);
+      border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow);
+      padding:clamp(18px,3.2vw,28px)
+    }
     #amasa-hero .brand{
-      display:inline-flex; gap:10px; align-items:center;
-      font-weight:800; letter-spacing:.02em; text-transform:uppercase;
-      background:linear-gradient(90deg,var(--orange), #ffb366);
+      display:inline-flex; gap:10px; align-items:center; text-transform:uppercase;
+      font-weight:800; letter-spacing:.03em; font-size:13px;
+      background:linear-gradient(90deg,#fff, #ffb366, #ff7a1a);
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      font-size:clamp(13px,1.6vw,15px);
     }
     #amasa-hero h1{
-      margin:.25em 0 .2em; font-weight:900; letter-spacing:-.02em;
-      font-size:clamp(30px,4.8vw,56px); line-height:1.05;
+      margin:.25em 0 .15em; font-weight:900; letter-spacing:-.02em;
+      font-size:clamp(30px,5vw,56px); line-height:1.04; color:#fff;
     }
     #amasa-hero .tagline{
-      font-size:clamp(15px,2vw,20px); color:#1a1a1b; opacity:.92; margin:0 0 16px;
+      margin:0 0 16px; font-size:clamp(15px,2vw,20px); color:#ffe9d6;
     }
-
-    /* Service chips */
-    #amasa-hero .chips{ display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 22px; }
+    #amasa-hero .chips{ display:flex; flex-wrap:wrap; gap:10px; margin:8px 0 18px }
     #amasa-hero .chip{
-      border:1px solid var(--line); padding:8px 12px; border-radius:999px;
-      background:#fffaf5; font-size:13px; color:#4a4d55; box-shadow:0 1px 0 #00000008;
+      padding:8px 12px; border-radius:999px; font-size:13px; color:#fff;
+      border:1px solid #ffffff22; background:#ffffff10;
     }
-
-    /* CTAs */
-    #amasa-hero .ctas{ display:flex; flex-wrap:wrap; gap:12px; }
+    #amasa-hero .ctas{ display:flex; flex-wrap:wrap; gap:12px }
     #amasa-hero .btn{
-      appearance:none; border:none; cursor:pointer; text-decoration:none;
-      padding:12px 16px; border-radius:12px; font-weight:800;
-      box-shadow:var(--shadow); transform:translateZ(0);
-      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-      display:inline-flex; align-items:center; gap:10px;
+      appearance:none; border:none; cursor:pointer; text-decoration:none; font-weight:800;
+      padding:12px 16px; border-radius:12px; display:inline-flex; align-items:center; gap:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25); transform:translateZ(0);
+      transition:transform .15s ease, filter .15s ease;
     }
-    #amasa-hero .btn.primary{ background:linear-gradient(180deg,var(--orange),var(--orange-900)); color:#fff; }
-    #amasa-hero .btn.secondary{ background:#fff; color:#1a1a1b; border:1px solid var(--line); }
-    #amasa-hero .btn:hover{ transform:translateY(-1px) }
-    #amasa-hero .btn:active{ transform:translateY(0) }
+    #amasa-hero .btn.primary{ background:linear-gradient(180deg,var(--orange),var(--orange-900)); color:#fff }
+    #amasa-hero .btn.secondary{ background:#ffffff10; color:#fff; border:1px solid #ffffff22 }
+    #amasa-hero .btn:hover{ transform:translateY(-1px); filter:brightness(1.05) }
 
-    /* ===== Right — lively mosaic (2 photos + 1 gradient tile) ===== */
-    #amasa-hero .mosaic{
-      display:grid; gap:14px;
-      grid-template-columns:1fr 1fr;
-      grid-auto-rows:minmax(150px, 1fr);
+    /* Right: image ribbons (no duplicate display) */
+    #amasa-hero .ribbons{ position:relative; display:grid; gap:14px }
+    #amasa-hero .ribbon{
+      position:relative; border-radius:18px; overflow:hidden; height:clamp(180px, 28vw, 340px);
+      box-shadow:var(--shadow); transform:skewY(-2deg); background:#000;
     }
-    /* Main wide shot */
-    #amasa-hero .tile.main{
-      grid-column:1 / span 2; min-height:340px;
-      border-radius:18px; overflow:hidden; position:relative; box-shadow:var(--shadow);
-      animation:floatY 8s ease-in-out infinite;
+    #amasa-hero .ribbon.small{ height:clamp(140px, 22vw, 260px); transform:skewY(2deg) }
+    #amasa-hero .ribbon img{
+      width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.08) contrast(1.06);
     }
-    /* Close-up shot */
-    #amasa-hero .tile.photo{
-      min-height:220px; border-radius:18px; overflow:hidden; position:relative; box-shadow:var(--shadow);
-      animation:floatY 10s ease-in-out infinite reverse;
-    }
-    /* Gradient “availability” tile */
-    #amasa-hero .tile.grad{
-      min-height:220px; border-radius:18px; position:relative; overflow:hidden;
-      display:grid; place-items:center; text-align:center; box-shadow:var(--shadow);
-      background:
-        radial-gradient(120% 100% at -10% 0%, #fff2e7 0%, #ffd6b5 35%, transparent 60%),
-        radial-gradient(120% 120% at 110% 100%, #ffd2a8 0%, #ff9b47 40%, #ff7a1a 70%);
-      color:#2b1b11;
-    }
-    #amasa-hero .grad .pulse{
-      position:absolute; inset:-20%; border-radius:30px;
-      background:conic-gradient(from 0deg, #ffffff55, #ffffff00 30%, #ffffff55 60%, #ffffff00 100%);
-      animation:rotate 16s linear infinite; mix-blend:overlay; filter:blur(20px);
-    }
-    #amasa-hero .grad .copy{
-      position:relative; z-index:1; padding:20px;
-    }
-    #amasa-hero .grad h3{
-      margin:0 0 6px; font-size:clamp(16px,2.6vw,22px); letter-spacing:.3px; color:#3b2417;
-    }
-    #amasa-hero .grad p{ margin:0; font-size:14px; opacity:.85 }
-    @keyframes rotate{ to{ transform:rotate(360deg) } }
-    @keyframes floatY{
-      0%,100%{ transform:translateY(0) }
-      50%{ transform:translateY(-8px) }
-    }
-
-    /* Image behavior (fill without awkward crop feeling) */
-    #amasa-hero figure, #amasa-hero .tile{ background:#000 }
-    #amasa-hero img{
-      width:100%; height:100%; display:block; object-fit:cover; object-position:center;
-      filter:saturate(1.05) contrast(1.05);
-    }
-    /* Make the two photos feel distinct: subtle treatments */
-    #amasa-hero .main img{ filter:saturate(1.08) contrast(1.08) }
-    #amasa-hero .photo img{ filter:saturate(1.1) contrast(1.1) brightness(.98) }
-    /* Light gradient overlays for depth */
-    #amasa-hero .tile::after{
+    #amasa-hero .ribbon::after{
       content:""; position:absolute; inset:0; pointer-events:none;
-      background:linear-gradient(180deg, transparent 65%, rgba(0,0,0,.16));
+      background:linear-gradient(180deg, #0000 60%, #0006);
     }
-    #amasa-hero .main::after{ background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,.18)) }
+
+    /* Service marquee for extra vibe */
+    #amasa-hero .marquee{
+      margin-top:12px; overflow:hidden; border-top:1px solid #ffffff14; border-bottom:1px solid #ffffff14;
+    }
+    #amasa-hero .track{
+      display:flex; gap:28px; padding:10px 0; white-space:nowrap;
+      animation:scroll 16s linear infinite;
+      color:#ffd7b1; font-weight:700; letter-spacing:.02em;
+    }
+    #amasa-hero .dot{ opacity:.6; margin:0 6px }
+    @keyframes scroll{
+      from{ transform:translateX(0) } to{ transform:translateX(-50%) }
+    }
+    @media (prefers-reduced-motion:reduce){ #amasa-hero .track{ animation:none } }
 
     /* Footer micro-links */
     #amasa-hero .mini{
-      max-width:1200px; margin:6px auto 0; padding:0 clamp(16px,3.5vw,28px) 14px;
-      display:flex; gap:18px; flex-wrap:wrap; color:var(--dim); font-size:13px; position:relative; z-index:1;
+      width:min(1200px,92vw); margin:8px auto 0; z-index:2;
+      color:#ffe9d6; opacity:.9; font-size:13px; display:flex; gap:18px; flex-wrap:wrap;
     }
-    #amasa-hero .mini a{ color:var(--orange-900); text-underline-offset:2px; }
+    #amasa-hero .mini a{ color:#ffd0a3; text-underline-offset:2px }
   </style>
 
-  <div class="wrap">
-    <span class="ring" aria-hidden="true"></span>
+  <!-- BACKGROUND LAYERS -->
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="rings" aria-hidden="true">
+    <span class="ring"></span><span class="ring big"></span>
+  </div>
+  <div class="notes" aria-hidden="true">
+    <span class="note" style="left:8%; top:18%">♪</span>
+    <span class="note" style="left:78%; top:12%; animation-delay:.4s">♩</span>
+    <span class="note" style="left:64%; top:82%; animation-delay:.8s">♫</span>
+    <span class="note" style="left:22%; top:68%; animation-delay:1.2s">♬</span>
+  </div>
 
-    <!-- Left: copy -->
-    <div class="lead">
+  <!-- FOREGROUND -->
+  <div class="wrap">
+    <!-- LEFT: glass card copy -->
+    <div class="card">
       <span class="brand">Cavalry Sounds • Amasa Bruce</span>
       <h1>Professional Drummer for Hire</h1>
       <p class="tagline">In the pocket. On time.</p>
@@ -196,37 +184,53 @@
         <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
         <a class="btn secondary" href="#rates">View Rates</a>
       </div>
-    </div>
 
-    <!-- Right: lively mosaic (2 photos + 1 gradient tile) -->
-    <div class="mosaic" aria-label="Performance photos">
-      <!-- Wide main photo (image3) -->
-      <figure class="tile main">
-        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w"
-             alt="Amasa Bruce performing on stage — wide shot">
-      </figure>
-
-      <!-- Close-up photo (image0) -->
-      <figure class="tile photo">
-        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
-             alt="Close-up of Amasa Bruce playing drums">
-      </figure>
-
-      <!-- Animated gradient card (no duplicate photo) -->
-      <div class="tile grad" role="img" aria-label="Availability and highlights">
-        <div class="pulse" aria-hidden="true"></div>
-        <div class="copy">
-          <h3>Available: Sessions • Tours • Lessons</h3>
-          <p>Fast turnaround • Tight pocket • Pro attitude</p>
+      <!-- marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="track">
+          <span>R&amp;B</span><span class="dot">•</span><span>Funk</span><span class="dot">•</span><span>Hip-Hop</span><span class="dot">•</span><span>Pop</span><span class="dot">•</span><span>Gospel</span><span class="dot">•</span>
+          <span>Studio Sessions</span><span class="dot">•</span><span>Live Tours</span><span class="dot">•</span><span>Lessons</span><span class="dot">•</span>
+          <!-- duplicate the row once so it loops cleanly -->
+          <span>R&amp;B</span><span class="dot">•</span><span>Funk</span><span class="dot">•</span><span>Hip-Hop</span><span class="dot">•</span><span>Pop</span><span class="dot">•</span><span>Gospel</span><span class="dot">•</span>
+          <span>Studio Sessions</span><span class="dot">•</span><span>Live Tours</span><span class="dot">•</span><span>Lessons</span>
         </div>
       </div>
     </div>
+
+    <!-- RIGHT: image ribbons -->
+    <div class="ribbons" aria-label="Performance images">
+      <figure class="ribbon">
+        <img id="img-1" alt="Amasa on stage — wide">
+      </figure>
+      <figure class="ribbon small" id="ribbon-2">
+        <img id="img-2" alt="Amasa drum close-up">
+      </figure>
+    </div>
   </div>
 
-  <!-- Optional micro-links -->
   <div class="mini">
     <span>Based at <strong>CavalrySounds.com</strong></span>
     <span>IG: <a href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Gtm_masa</a></span>
     <span>YouTube: <a href="#" target="_blank" rel="noopener">Amasa&nbsp;Bruce</a></span>
   </div>
+
+  <!-- tiny script to set images + prevent duplicates -->
+  <script>
+    (function(){
+      const hero = document.getElementById('amasa-hero');
+      const src1 = hero.dataset.image1 || '';
+      const src2 = hero.dataset.image2 || '';
+      const i1 = document.getElementById('img-1');
+      const i2 = document.getElementById('img-2');
+      const r2 = document.getElementById('ribbon-2');
+
+      i1.src = src1;
+      if (src2 && src2 !== src1){
+        i2.src = src2;
+      } else {
+        // hide second ribbon if same or missing (no duplicate display)
+        r2.style.display = 'none';
+      }
+    })();
+  </script>
 </section>
