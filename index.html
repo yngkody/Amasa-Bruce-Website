@@ -1,148 +1,183 @@
-<<!-- ================= Amasa Bruce • Hero (Fixed Aspect Ratio Fill) ================= -->
+<!-- =============== Amasa Bruce • Hero (Lively, Pro, No Duplicate Photos) =============== -->
 <section id="amasa-hero" aria-label="Hero — Amasa Bruce Drums">
   <style>
-    /* ---- Tokens ---- */
+    /* ===== Tokens ===== */
     #amasa-hero{
       --ink:#0f0f10;
-      --dim:#5d6067;
+      --dim:#5e6169;
       --orange:#ff7a1a;
       --orange-900:#c85000;
-      --bg:#fffdf9;
+      --cream:#fff8ef;
       --panel:#ffffff;
-      --line:#eeeeee;
+      --line:#ececec;
       --radius:18px;
       --shadow:0 18px 48px rgba(0,0,0,.12);
       font:16px/1.5 system-ui,-apple-system,"Segoe UI",Inter,Roboto,Arial,sans-serif;
       color:var(--ink);
-      background:linear-gradient(135deg,#fff8ef 0%, #fff 42%);
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #ffdcc0 0%, transparent 60%),
+        radial-gradient(900px 500px at 95% 10%, #ffe4cf 0%, transparent 55%),
+        linear-gradient(180deg,#fff,#fff);
     }
     #amasa-hero *{box-sizing:border-box}
 
-    /* ---- Layout ---- */
+    /* Subtle animated gradient blobs for life */
+    #amasa-hero::before,
+    #amasa-hero::after{
+      content:"";
+      position:absolute; inset:auto auto 0 -15%;
+      width:60vw; height:60vw; pointer-events:none; filter:blur(40px); opacity:.22;
+      background:conic-gradient(from 90deg, #ff7a1a, #ffb77a, #ffd2a8, #ff7a1a);
+      animation:blob 18s linear infinite;
+    }
+    #amasa-hero::after{
+      left:auto; right:-18%; bottom:auto; top:-20%;
+      width:42vw; height:42vw; opacity:.18; animation-duration:22s; animation-direction:reverse;
+    }
+    @keyframes blob{ 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+
+    /* ===== Layout ===== */
     #amasa-hero .wrap{
       max-width:1200px;
       margin:clamp(14px,4vw,36px) auto;
-      padding:0 clamp(14px,3.5vw,28px);
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:clamp(16px,3vw,28px);
+      padding:clamp(16px,3.5vw,28px);
+      display:grid; gap:clamp(16px,3vw,28px);
+      grid-template-columns:1.05fr .95fr;
       align-items:center;
+      position:relative;
+      z-index:1;
     }
     @media (max-width:900px){
-      #amasa-hero .wrap{
-        grid-template-columns:1fr;
-        gap:20px;
-      }
+      #amasa-hero .wrap{ grid-template-columns:1fr; }
     }
 
-    /* ---- Text block ---- */
-    #amasa-hero .lead{
-      padding:clamp(12px,2vw,22px);
+    /* Decorative animated border ring for the whole hero card */
+    #amasa-hero .ring{
+      position:absolute; inset:0; border-radius:24px; pointer-events:none;
+      mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+      -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      padding:2px;
     }
+    #amasa-hero .ring::before{
+      content:""; position:absolute; inset:0; border-radius:24px;
+      background:linear-gradient(90deg,#ffb77a, #ff7a1a, #ffb366, #ff7a1a);
+      background-size:200% 100%;
+      animation:ring 8s linear infinite;
+    }
+    @keyframes ring{ to{ background-position:200% 0 } }
+
+    /* ===== Left — copy ===== */
+    #amasa-hero .lead{ padding:clamp(10px,1.6vw,16px); }
     #amasa-hero .brand{
-      display:inline-flex; align-items:center; gap:10px;
-      font-weight:700; letter-spacing:.02em;
-      color:var(--orange);
+      display:inline-flex; gap:10px; align-items:center;
+      font-weight:800; letter-spacing:.02em; text-transform:uppercase;
       background:linear-gradient(90deg,var(--orange), #ffb366);
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      font-size:clamp(14px,1.8vw,16px);
-      text-transform:uppercase;
+      font-size:clamp(13px,1.6vw,15px);
     }
     #amasa-hero h1{
-      margin:.25em 0 .2em;
-      font-weight:800; letter-spacing:-.02em;
-      font-size:clamp(28px,4.8vw,56px);
-      line-height:1.06;
-      color:var(--ink);
+      margin:.25em 0 .2em; font-weight:900; letter-spacing:-.02em;
+      font-size:clamp(30px,4.8vw,56px); line-height:1.05;
     }
     #amasa-hero .tagline{
-      font-size:clamp(15px,2.1vw,20px);
-      color:#1a1a1b; opacity:.9;
-      margin:0 0 16px;
+      font-size:clamp(15px,2vw,20px); color:#1a1a1b; opacity:.92; margin:0 0 16px;
     }
 
-    /* ---- Service chips ---- */
-    #amasa-hero .chips{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin:10px 0 22px;
-    }
+    /* Service chips */
+    #amasa-hero .chips{ display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 22px; }
     #amasa-hero .chip{
-      border:1px solid var(--line);
-      padding:8px 12px; border-radius:999px;
-      background:#fffaf5;
-      box-shadow:0 1px 0 #00000008;
-      font-size:13px; color:#4a4d55;
+      border:1px solid var(--line); padding:8px 12px; border-radius:999px;
+      background:#fffaf5; font-size:13px; color:#4a4d55; box-shadow:0 1px 0 #00000008;
     }
 
-    /* ---- CTAs ---- */
+    /* CTAs */
     #amasa-hero .ctas{ display:flex; flex-wrap:wrap; gap:12px; }
     #amasa-hero .btn{
       appearance:none; border:none; cursor:pointer; text-decoration:none;
-      padding:12px 16px; border-radius:12px; font-weight:700;
+      padding:12px 16px; border-radius:12px; font-weight:800;
       box-shadow:var(--shadow); transform:translateZ(0);
       transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
       display:inline-flex; align-items:center; gap:10px;
     }
-    #amasa-hero .btn.primary{
-      background:linear-gradient(180deg,var(--orange),var(--orange-900));
-      color:#fff;
-    }
-    #amasa-hero .btn.secondary{
-      background:#fff; color:#1a1a1b; border:1px solid var(--line);
-    }
-    #amasa-hero .btn:hover{ transform:translateY(-1px); }
-    #amasa-hero .btn:active{ transform:translateY(0); }
+    #amasa-hero .btn.primary{ background:linear-gradient(180deg,var(--orange),var(--orange-900)); color:#fff; }
+    #amasa-hero .btn.secondary{ background:#fff; color:#1a1a1b; border:1px solid var(--line); }
+    #amasa-hero .btn:hover{ transform:translateY(-1px) }
+    #amasa-hero .btn:active{ transform:translateY(0) }
 
-    /* ---- Image stack (fixed aspect ratio fill) ---- */
-    #amasa-hero .shots{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto;
-      gap:14px;
+    /* ===== Right — lively mosaic (2 photos + 1 gradient tile) ===== */
+    #amasa-hero .mosaic{
+      display:grid; gap:14px;
+      grid-template-columns:1fr 1fr;
+      grid-auto-rows:minmax(150px, 1fr);
     }
-    #amasa-hero figure{
-      margin:0;
-      position:relative;
-      overflow:hidden;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      background:#000;
-      width:100%;
-      height:auto;
-      min-height:220px;
+    /* Main wide shot */
+    #amasa-hero .tile.main{
+      grid-column:1 / span 2; min-height:340px;
+      border-radius:18px; overflow:hidden; position:relative; box-shadow:var(--shadow);
+      animation:floatY 8s ease-in-out infinite;
     }
-    #amasa-hero .shots figure:first-child{
-      grid-column:1 / span 2;
-      height:auto;
-      min-height:360px;
+    /* Close-up shot */
+    #amasa-hero .tile.photo{
+      min-height:220px; border-radius:18px; overflow:hidden; position:relative; box-shadow:var(--shadow);
+      animation:floatY 10s ease-in-out infinite reverse;
     }
+    /* Gradient “availability” tile */
+    #amasa-hero .tile.grad{
+      min-height:220px; border-radius:18px; position:relative; overflow:hidden;
+      display:grid; place-items:center; text-align:center; box-shadow:var(--shadow);
+      background:
+        radial-gradient(120% 100% at -10% 0%, #fff2e7 0%, #ffd6b5 35%, transparent 60%),
+        radial-gradient(120% 120% at 110% 100%, #ffd2a8 0%, #ff9b47 40%, #ff7a1a 70%);
+      color:#2b1b11;
+    }
+    #amasa-hero .grad .pulse{
+      position:absolute; inset:-20%; border-radius:30px;
+      background:conic-gradient(from 0deg, #ffffff55, #ffffff00 30%, #ffffff55 60%, #ffffff00 100%);
+      animation:rotate 16s linear infinite; mix-blend:overlay; filter:blur(20px);
+    }
+    #amasa-hero .grad .copy{
+      position:relative; z-index:1; padding:20px;
+    }
+    #amasa-hero .grad h3{
+      margin:0 0 6px; font-size:clamp(16px,2.6vw,22px); letter-spacing:.3px; color:#3b2417;
+    }
+    #amasa-hero .grad p{ margin:0; font-size:14px; opacity:.85 }
+    @keyframes rotate{ to{ transform:rotate(360deg) } }
+    @keyframes floatY{
+      0%,100%{ transform:translateY(0) }
+      50%{ transform:translateY(-8px) }
+    }
+
+    /* Image behavior (fill without awkward crop feeling) */
+    #amasa-hero figure, #amasa-hero .tile{ background:#000 }
     #amasa-hero img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      aspect-ratio:auto;
+      width:100%; height:100%; display:block; object-fit:cover; object-position:center;
       filter:saturate(1.05) contrast(1.05);
     }
-    #amasa-hero .glow{
-      position:absolute; inset:0;
-      background:radial-gradient(80% 60% at 20% 20%, #ff7a1a33 0%, transparent 55%) ,
-                 radial-gradient(80% 60% at 80% 80%, #ffb3662b 0%, transparent 60%);
-      pointer-events:none;
+    /* Make the two photos feel distinct: subtle treatments */
+    #amasa-hero .main img{ filter:saturate(1.08) contrast(1.08) }
+    #amasa-hero .photo img{ filter:saturate(1.1) contrast(1.1) brightness(.98) }
+    /* Light gradient overlays for depth */
+    #amasa-hero .tile::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:linear-gradient(180deg, transparent 65%, rgba(0,0,0,.16));
     }
+    #amasa-hero .main::after{ background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,.18)) }
 
-    /* ---- Footer row under hero ---- */
+    /* Footer micro-links */
     #amasa-hero .mini{
-      max-width:1200px;
-      margin:12px auto 0;
-      padding:0 clamp(14px,3.5vw,28px) 8px;
-      display:flex; gap:18px; flex-wrap:wrap;
-      color:var(--dim); font-size:13px;
+      max-width:1200px; margin:6px auto 0; padding:0 clamp(16px,3.5vw,28px) 14px;
+      display:flex; gap:18px; flex-wrap:wrap; color:var(--dim); font-size:13px; position:relative; z-index:1;
     }
     #amasa-hero .mini a{ color:var(--orange-900); text-underline-offset:2px; }
   </style>
 
   <div class="wrap">
+    <span class="ring" aria-hidden="true"></span>
+
     <!-- Left: copy -->
     <div class="lead">
       <span class="brand">Cavalry Sounds • Amasa Bruce</span>
@@ -163,104 +198,35 @@
       </div>
     </div>
 
-    <!-- Right: image stack -->
-    <div class="shots" aria-label="Performance photos">
-      <figure>
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w"
-          alt="Amasa Bruce performing on drums — wide shot">
-        <span class="glow" aria-hidden="true"></span>
+    <!-- Right: lively mosaic (2 photos + 1 gradient tile) -->
+    <div class="mosaic" aria-label="Performance photos">
+      <!-- Wide main photo (image3) -->
+      <figure class="tile main">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w"
+             alt="Amasa Bruce performing on stage — wide shot">
       </figure>
-      <figure>
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
-          alt="Close-up of Amasa Bruce playing drums">
-        <span class="glow" aria-hidden="true"></span>
+
+      <!-- Close-up photo (image0) -->
+      <figure class="tile photo">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
+             alt="Close-up of Amasa Bruce playing drums">
       </figure>
-      <figure>
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w"
-          alt="Stage performance — Amasa on kit">
-        <span class="glow" aria-hidden="true"></span>
-      </figure>
+
+      <!-- Animated gradient card (no duplicate photo) -->
+      <div class="tile grad" role="img" aria-label="Availability and highlights">
+        <div class="pulse" aria-hidden="true"></div>
+        <div class="copy">
+          <h3>Available: Sessions • Tours • Lessons</h3>
+          <p>Fast turnaround • Tight pocket • Pro attitude</p>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- Optional micro-links -->
   <div class="mini">
     <span>Based at <strong>CavalrySounds.com</strong></span>
     <span>IG: <a href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Gtm_masa</a></span>
     <span>YouTube: <a href="#" target="_blank" rel="noopener">Amasa&nbsp;Bruce</a></span>
   </div>
 </section>
-<!-- ================= Amasa Bruce • Contact ================= -->
-<section id="contact" aria-label="Contact — Amasa Bruce Drums">
-  <style>
-    #contact{
-      --ink:#0f0f10; --dim:#5d6067; --orange:#ff7a1a; --orange-900:#c85000;
-      --panel:#ffffff; --line:#ededed; --radius:16px; --shadow:0 16px 44px rgba(0,0,0,.10);
-      background:linear-gradient(180deg,#ffffff 0%, #fff7ed 100%);
-      color:var(--ink); padding:clamp(28px,6vw,72px) 0;
-    }
-    #contact .wrap{max-width:1000px;margin:0 auto;padding:0 clamp(14px,3.5vw,28px)}
-    #contact h2{font-size:clamp(22px,3.6vw,36px);margin:0 0 8px}
-    #contact p.sub{color:var(--dim);margin:0 0 18px}
-    #contact .panel{
-      background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:clamp(16px,2.6vw,24px);
-      display:grid; gap:18px; grid-template-columns:1fr 1fr;
-    }
-    #contact .field{display:flex; flex-direction:column; gap:8px}
-    #contact label{font-size:14px; color:var(--dim)}
-    #contact input, #contact textarea{
-      border:1px solid var(--line); border-radius:12px; padding:12px 12px;
-      font:inherit; width:100%; background:#fffdfa;
-    }
-    #contact textarea{min-height:120px; resize:vertical}
-    #contact .btn{
-      appearance:none; border:none; cursor:pointer; border-radius:12px;
-      padding:12px 16px; font-weight:800; color:#fff;
-      background:linear-gradient(180deg,var(--orange),var(--orange-900));
-    }
-    #contact .aside{display:flex; flex-direction:column; gap:8px}
-    #contact .aside a{color:var(--orange-900); text-decoration:none; font-weight:700}
-    @media (max-width:800px){ #contact .panel{grid-template-columns:1fr} }
-  </style>
-
-  <div class="wrap">
-    <h2>Contact</h2>
-    <p class="sub">Tell me about your project—date, location, set length, and any backline needs.</p>
-
-    <div class="panel">
-      <!-- Simple mailto "form" that opens an email draft -->
-      <form action="mailto:bruce_amasa@yahoo.com" method="GET" onsubmit="this.action='mailto:bruce_amasa@yahoo.com?subject=' + encodeURIComponent(document.getElementById('c-subj').value) + '&body=' + encodeURIComponent('Name: ' + document.getElementById('c-name').value + '\nEmail: ' + document.getElementById('c-email').value + '\n\nMessage:\n' + document.getElementById('c-msg').value);">
-        <div class="field">
-          <label for="c-name">Name</label>
-          <input id="c-name" name="name" type="text" placeholder="Your name" required>
-        </div>
-        <div class="field">
-          <label for="c-email">Email</label>
-          <input id="c-email" name="email" type="email" placeholder="you@example.com" required>
-        </div>
-        <div class="field">
-          <label for="c-subj">Subject</label>
-          <input id="c-subj" name="subject" type="text" placeholder="Booking / Lessons / Session" required>
-        </div>
-        <div class="field">
-          <label for="c-msg">Message</label>
-          <textarea id="c-msg" name="message" placeholder="Dates, location, set length, gear notes…" required></textarea>
-        </div>
-        <button class="btn" type="submit">Send Email</button>
-      </form>
-
-      <!-- Quick links -->
-      <div class="aside">
-        <div><strong>Email:</strong> <a href="mailto:bruce_amasa@yahoo.com">bruce_amasa@yahoo.com</a></div>
-        <div><strong>Instagram:</strong> <a href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">@Gtm_masa</a></div>
-        <div><strong>YouTube:</strong> <a href="#" target="_blank" rel="noopener">Amasa Bruce</a></div>
-        <div><strong>Website:</strong> CavalrySounds.com</div>
-        <p style="color:#5d6067;font-size:14px;margin-top:6px">“You don’t get paid for hobbies, you get paid for being a professional.” — Rex Hardy Jr.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
