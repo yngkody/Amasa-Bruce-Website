@@ -1,183 +1,195 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amasa Bruce — Professional Drummer</title>
-  <meta name="description" content="Professional drummer for touring, lessons, and studio sessions — Amasa Bruce." />
-  <style>
-    /* ========= Base & reset ========= */
-    html, body { margin:0; padding:0; }
-    * { box-sizing:border-box; }
-    body {
-      font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
-      color:#fff; background:#0b0c0f; -webkit-font-smoothing:antialiased;
-    }
-    a { color:inherit; text-decoration:none; }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amasa Bruce — Drummer for Hire</title>
+<meta name="description" content="Touring • Lessons • Studio Sessions • Live Band • Backline & Sound" />
+<style>
+  html,body{margin:0;padding:0}
+  *{box-sizing:border-box}
+  body{
+    font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+    color:#fff;
+    background:#0b0c0f;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    /* ========= Hero (top, stable) ========= */
-    .hero {
-      background:
-        radial-gradient(60% 45% at 12% 12%, #ff7a1a22 0%, transparent 60%),
-        radial-gradient(55% 45% at 88% 86%, #ffb36618 0%, transparent 60%),
-        #0b0c0f;
-      padding:clamp(28px,6vw,60px) 0;
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-    }
-    .hero .wrap {
-      width:min(1200px,92vw);
-      margin:0 auto;
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;  /* copy first */
-      gap:clamp(28px,4vw,48px);
-      align-items:start;
-    }
-    @media (max-width:900px){ .hero .wrap { grid-template-columns: 1fr; } }
+  /* ===== HERO ===== */
+  .hero{
+    background:
+      radial-gradient(60% 45% at 14% 12%, #ff7a1a22 0%, transparent 60%),
+      radial-gradient(55% 45% at 86% 88%, #ffb36618 0%, transparent 60%),
+      #0b0c0f;
+    padding:clamp(28px,6vw,60px) 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    width:min(1200px,92vw);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:clamp(28px,4vw,48px);
+    align-items:start;
+  }
+  @media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
 
-    /* ========= Left: copy card ========= */
-    .card {
-      background:#0c0d11cc;
-      border:1px solid #ffffff22;
-      border-radius:20px;
-      backdrop-filter:blur(10px) saturate(1.08);
-      box-shadow:0 28px 80px rgba(0,0,0,.35);
-      padding:clamp(22px,3.6vw,34px);
-      display:flex; flex-direction:column; gap:18px;
-    }
-    .brand {
-      display:inline-block;
-      font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:14px;
-      background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    h1 { margin:0; font-size:clamp(36px,5vw,68px); line-height:1.05; font-weight:900; }
-    .tag { margin:0; color:#ffb366; font-weight:700; font-size:clamp(16px,2.2vw,20px); }
+  /* ===== LEFT: COPY ===== */
+  .card{
+    background:#0c0d11cc;
+    border:1px solid #ffffff22;
+    border-radius:20px;
+    backdrop-filter:blur(10px) saturate(1.08);
+    box-shadow:0 28px 80px rgba(0,0,0,.35);
+    padding:clamp(22px,3.6vw,34px);
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .brand{
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    font-size:14px;
+    background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  h1{margin:0;font-size:clamp(36px,5vw,68px);line-height:1.05;font-weight:900}
+  .tag{margin:0;color:#ffb366;font-weight:700;font-size:clamp(16px,2.2vw,20px)}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+  .chip{
+    border:2px solid #ff7a1a;
+    background:rgba(255,122,26,.10);
+    color:#fff;
+    font-weight:800;
+    font-size:14px;
+    padding:10px 14px;
+    border-radius:999px;
+    letter-spacing:.02em;
+  }
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    border-radius:12px;
+    padding:12px 18px;
+    border:none;
+    cursor:pointer;
+    transition:transform .15s ease,filter .15s ease;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .btn.primary{background:linear-gradient(180deg,#ff7a1a,#b84e00);color:#fff}
+  .btn.secondary{background:transparent;border:2px solid #ff7a1a;color:#ff7a1a}
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 
-    .chips {
-      display:flex; flex-wrap:wrap; gap:12px; margin-top:4px;
-    }
-    .chip {
-      border:2px solid #ff7a1a; background:rgba(255,122,26,.10);
-      color:#fff; font-weight:800; font-size:14px; padding:10px 14px;
-      border-radius:999px; letter-spacing:.02em;
-    }
-    .cta-row { display:flex; gap:14px; flex-wrap:wrap; }
-    .btn {
-      display:inline-flex; align-items:center; justify-content:center;
-      font-weight:900; border-radius:12px; padding:12px 18px; border:none; cursor:pointer;
-      transition:transform .15s ease, filter .15s ease; box-shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-    .btn.primary { background:linear-gradient(180deg,#ff7a1a,#b84e00); color:#fff; }
-    .btn.secondary { background:transparent; border:2px solid #ff7a1a; color:#ff7a1a; }
-    .btn:hover { transform:translateY(-1px); filter:brightness(1.06); }
+  /* ===== RIGHT: CASCADE DECK ===== */
+  .cascade{
+    position:relative;
+    width:100%;
+    aspect-ratio:5/4;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(180deg,#0f1014,#0b0c0f);
+  }
 
-    /* ========= Right: 2-frame collage (face-safe crop) ========= */
-    .collage {
-      /* Keeps everything contained and neat */
-      display:grid;
-      grid-template-rows: auto auto;
-      gap:16px;
-      align-content:start;
-    }
+  /* base style for each photo card */
+  .photo{
+    position:absolute;
+    border-radius:18px;
+    overflow:hidden;
+    width:70%;
+    height:68%;
+    box-shadow:0 24px 64px rgba(0,0,0,.45);
+    outline:1px solid #ffffff1a;
+    background:#000;
+  }
+  .photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 30%; /* keep face centered */
+    display:block;
+    filter:saturate(1.08) contrast(1.06);
+  }
 
-    /* Each frame lives in normal flow; subtle overlap achieved with negative margins
-       (still safe & responsive, no off-page spill). */
-    .frame {
-      border-radius:18px;
-      overflow:hidden;
-      background:#000;
-      outline:1px solid #ffffff1a;
-      box-shadow:0 24px 64px rgba(0,0,0,.40);
-      position:relative;
-    }
-    .frame img {
-      width:100%; height:100%;
-      display:block;
-      object-fit:cover;
-      /* 👇 Face-safe focus (tweak if needed) */
-      object-position: 50% 28%;
-      filter:saturate(1.08) contrast(1.06);
-    }
+  /* first photo (bottom) */
+  .photo--one{
+    top:14%;
+    left:10%;
+    transform:rotate(-4deg);
+  }
 
-    /* Top wide frame */
-    .frame--wide {
-      aspect-ratio: 16 / 9;
-      /* subtle orange edge glow */
-      box-shadow:
-        0 24px 64px rgba(0,0,0,.40),
-        0 0 0 1px #ffffff1a,
-        0 0 40px #ff7a1a22 inset;
-    }
+  /* second photo (top) */
+  .photo--two{
+    top:6%;
+    left:20%;
+    transform:rotate(4deg);
+    z-index:2;
+    box-shadow:0 30px 70px rgba(0,0,0,.6);
+  }
 
-    /* Bottom offset frame */
-    .frame--offset {
-      aspect-ratio: 4 / 3;
-      margin-left:clamp(20px,3vw,36px);     /* tasteful cascade */
-      margin-top:-6px;                      /* gentle overlap upward */
-      box-shadow:
-        0 24px 64px rgba(0,0,0,.40),
-        0 0 0 1px #ffffff1a,
-        0 0 36px #ffb3661f inset;
-    }
+  /* subtle orange glow behind the stack */
+  .cascade::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(60% 60% at 50% 50%, #ff7a1a22 0%, transparent 70%);
+    filter:blur(30px);
+    z-index:0;
+  }
 
-    /* Slight rotation for artistry without chaos (kept inside container) */
-    .frame--wide  img { transform:scale(1.02) rotate(-0.8deg); transform-origin:center; }
-    .frame--offset img { transform:scale(1.02) rotate( 0.8deg); transform-origin:center; }
-
-    /* Mobile polish */
-    @media (max-width:700px){
-      .frame--wide  { aspect-ratio: 4 / 3; }
-      .frame--offset{ aspect-ratio: 4 / 3; margin-left:12px; }
-      .frame img { object-position: 50% 26%; } /* face a touch higher on small screens */
-    }
-  </style>
+  /* mobile adjustments */
+  @media(max-width:700px){
+    .cascade{aspect-ratio:4/5}
+    .photo{width:80%;height:60%;}
+    .photo--one{left:10%;top:20%;transform:rotate(-2.5deg);}
+    .photo--two{left:18%;top:12%;transform:rotate(2.5deg);}
+    .photo img{object-position:50% 28%;}
+  }
+</style>
 </head>
 <body>
 
-  <!-- ===== HERO (top) ===== -->
-  <section class="hero" id="hero">
-    <div class="wrap">
-      <!-- LEFT: Drummer-for-hire -->
-      <div class="card">
-        <span class="brand">Cavalry Sounds • Amasa Bruce</span>
-        <h1>Professional Drummer for Hire</h1>
-        <p class="tag">Touring • Lessons • Studio Sessions</p>
+<section class="hero" id="hero">
+  <div class="wrap">
+    <!-- LEFT: Copy -->
+    <div class="card">
+      <span class="brand">Cavalry Sounds • Amasa Bruce</span>
+      <h1>Professional Drummer for Hire</h1>
+      <p class="tag">Touring • Lessons • Studio Sessions</p>
 
-        <div class="chips" aria-label="Core services">
-          <span class="chip">Live Band</span>
-          <span class="chip">Studio Recording</span>
-          <span class="chip">Private Lessons</span>
-          <span class="chip">Backline &amp; Sound</span>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
-          <a class="btn secondary" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
-        </div>
+      <div class="chips">
+        <span class="chip">Live Band</span>
+        <span class="chip">Studio Recording</span>
+        <span class="chip">Private Lessons</span>
+        <span class="chip">Backline &amp; Sound</span>
       </div>
 
-      <!-- RIGHT: Collage using your two identical URLs with safe centering -->
-      <div class="collage" aria-label="Performance collage">
-        <!-- Top wide -->
-        <figure class="frame frame--wide">
-          <img
-            src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
-            alt="Amasa Bruce performing — wide crop (centered)"
-          />
-        </figure>
-
-        <!-- Bottom offset (same image, different frame/crop for variety) -->
-        <figure class="frame frame--offset">
-          <img
-            src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
-            alt="Amasa Bruce performing — offset crop (centered)"
-          />
-        </figure>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
+        <a class="btn secondary" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
-  </section>
+
+    <!-- RIGHT: Cascaded deck collage -->
+    <div class="cascade" aria-label="Performance collage">
+      <figure class="photo photo--one">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
+             alt="Amasa Bruce performing live">
+      </figure>
+
+      <figure class="photo photo--two">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
+             alt="Amasa Bruce drumming close-up">
+      </figure>
+    </div>
+  </div>
+</section>
 
 </body>
 </html>
