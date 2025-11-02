@@ -4,91 +4,69 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Amasa Bruce — Drummer for Hire</title>
-<meta name="description" content="Touring • Lessons • Studio Sessions • Live Band • Backline & Sound" />
 <style>
   html,body{margin:0;padding:0}*{box-sizing:border-box}
-  body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;color:#fff;background:#0b0c0f;-webkit-font-smoothing:antialiased}
+  body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;background:#0b0c0f;color:#fff}
 
-  /* ===== HERO ===== */
-  .hero{
-    background:
-      radial-gradient(60% 45% at 14% 12%, #ff7a1a22 0%, transparent 60%),
-      radial-gradient(55% 45% at 86% 88%, #ffb36618 0%, transparent 60%),
-      #0b0c0f;
-    padding:clamp(28px,6vw,60px) 0;
-    position:relative; overflow:hidden;
-  }
-  .wrap{
-    width:min(1200px,92vw); margin:0 auto;
-    display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,4vw,48px); align-items:start;
-  }
-  @media(max-width:900px){ .wrap{ grid-template-columns:1fr } }
+  /* ===== HERO (top, copy left • deck right) ===== */
+  .hero{padding:clamp(28px,6vw,60px) 0;background:
+    radial-gradient(60% 45% at 14% 12%, #ff7a1a22 0%, transparent 60%),
+    radial-gradient(55% 45% at 86% 88%, #ffb36618 0%, transparent 60%),
+    #0b0c0f;}
+  .wrap{width:min(1200px,92vw);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,48px);align-items:start}
+  @media (max-width:900px){.wrap{grid-template-columns:1fr}}
 
-  /* ===== LEFT: COPY ===== */
-  .card{
-    background:#0c0d11cc; border:1px solid #ffffff22; border-radius:20px;
-    backdrop-filter:blur(10px) saturate(1.08);
-    box-shadow:0 28px 80px rgba(0,0,0,.35);
-    padding:clamp(22px,3.6vw,34px);
-    display:flex; flex-direction:column; gap:18px;
-  }
-  .brand{
-    font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:14px;
-    background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
+  /* ===== LEFT: copy ===== */
+  .card{background:#0c0d11cc;border:1px solid #ffffff22;border-radius:20px;backdrop-filter:blur(10px) saturate(1.08);
+        box-shadow:0 28px 80px rgba(0,0,0,.35);padding:clamp(22px,3.6vw,34px);display:flex;flex-direction:column;gap:18px}
+  .brand{font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:14px;
+         background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);-webkit-background-clip:text;background-clip:text;color:transparent}
   h1{margin:0;font-size:clamp(36px,5vw,68px);line-height:1.05;font-weight:900}
   .tag{margin:0;color:#ffb366;font-weight:700;font-size:clamp(16px,2.2vw,20px)}
   .chips{display:flex;flex-wrap:wrap;gap:12px}
   .chip{border:2px solid #ff7a1a;background:rgba(255,122,26,.10);color:#fff;font-weight:800;font-size:14px;padding:10px 14px;border-radius:999px}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:900;border-radius:12px;padding:12px 18px;border:none;cursor:pointer;transition:transform .15s ease,filter .15s ease;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:900;border-radius:12px;padding:12px 18px;border:none;cursor:pointer;
+       transition:transform .15s ease,filter .15s ease;box-shadow:0 10px 30px rgba(0,0,0,.35)}
   .btn.primary{background:linear-gradient(180deg,#ff7a1a,#b84e00);color:#fff}
   .btn.secondary{background:transparent;border:2px solid #ff7a1a;color:#ff7a1a}
   .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 
-  /* ===== RIGHT: DECK-OF-CARDS COLLAGE ===== */
-  .cascade{
+  /* ===== RIGHT: true deck-of-cards collage (overlap) ===== */
+  .deck{
     position:relative; width:100%; aspect-ratio:5/4; border-radius:20px; overflow:hidden;
     background:linear-gradient(180deg,#0f1014,#0b0c0f);
   }
-  .cascade::before{
-    content:""; position:absolute; inset:0;
-    background:radial-gradient(60% 60% at 50% 50%, #ff7a1a22 0%, transparent 70%);
-    filter:blur(30px);
+  .deck::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%, #ff7a1a22 0%, transparent 70%);filter:blur(30px);z-index:0}
+
+  /* Photo card uses background-image so we can hard-center face via background-position */
+  .card-photo{
+    --pos-x: 50%;   /* horizontal face focus */
+    --pos-y: 24%;   /* vertical face focus (smaller = higher) */
+    position:absolute; z-index:1; width:72%; height:68%;
+    border-radius:18px; outline:1px solid #ffffff1a; box-shadow:0 26px 64px rgba(0,0,0,.48);
+    background-color:#000;
+    background-size:cover; background-repeat:no-repeat;
+    background-position: var(--pos-x) var(--pos-y);
   }
 
-  /* Card base */
-  .photo{
-    position:absolute; width:72%; height:68%;
-    border-radius:18px; overflow:hidden; background:#000;
-    outline:1px solid #ffffff1a; box-shadow:0 26px 64px rgba(0,0,0,.48);
-  }
-  /* Precision face control: scale a touch and shift image up with --y */
-  .photo img{
-    width:100%; height:100%; display:block; object-fit:cover;
-    transform:translateY(var(--y, -18%)) scale(1.08); /* <- raise face, small safe zoom */
-    transform-origin:center; filter:saturate(1.08) contrast(1.06);
-  }
-
-  /* Bottom card */
-  .photo--one{ top:18%; left:10%; transform:rotate(-4deg); z-index:1; }
-  /* Top card */
-  .photo--two{ top:8%; left:22%; transform:rotate(4deg); z-index:2; box-shadow:0 34px 80px rgba(0,0,0,.6) }
+  /* bottom card */
+  .card-photo.one{ top:18%; left:10%; transform:rotate(-4deg); }
+  /* top card */
+  .card-photo.two{ top:8%; left:22%; transform:rotate(4deg); z-index:2; box-shadow:0 34px 80px rgba(0,0,0,.6) }
 
   /* Mobile tidy */
-  @media(max-width:700px){
-    .cascade{ aspect-ratio:4/5 }
-    .photo{ width:82%; height:60% }
-    .photo--one{ top:22%; left:8%; transform:rotate(-2.5deg) }
-    .photo--two{ top:12%; left:16%; transform:rotate(2.5deg) }
-    .photo img{ transform:translateY(var(--y, -22%)) scale(1.08) }
+  @media (max-width:700px){
+    .deck{aspect-ratio:4/5}
+    .card-photo{ width:82%; height:60% }
+    .card-photo.one{ top:22%; left:8%; transform:rotate(-2.5deg) }
+    .card-photo.two{ top:12%; left:16%; transform:rotate(2.5deg) }
+    .card-photo{ --pos-y: 22%; } /* lift face a bit more on small screens */
   }
 </style>
 </head>
 <body>
-
-<section class="hero" id="hero">
+<section class="hero">
   <div class="wrap">
     <!-- LEFT -->
     <div class="card">
@@ -96,39 +74,31 @@
       <h1>Professional Drummer for Hire</h1>
       <p class="tag">Touring • Lessons • Studio Sessions</p>
 
-      <div class="chips">
+      <div class="chips" aria-label="Core services">
         <span class="chip">Live Band</span>
         <span class="chip">Studio Recording</span>
         <span class="chip">Private Lessons</span>
         <span class="chip">Backline &amp; Sound</span>
       </div>
 
-      <div class="cta-row">
+      <div class="cta">
         <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
         <a class="btn secondary" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
 
-    <!-- RIGHT: Stacked deck (both use the same provided URL) -->
-    <div class="cascade" aria-label="Performance collage">
+    <!-- RIGHT: deck collage (overlapping cards) -->
+    <div class="deck" aria-label="Performance collage">
       <!-- Bottom card -->
-      <figure class="photo photo--one">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
-          alt="Amasa Bruce performing live"
-          style="--y:-20%;" />
-      </figure>
-
+      <div class="card-photo one"
+           style="background-image:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w'); --pos-x:50%; --pos-y:22%;">
+      </div>
       <!-- Top card -->
-      <figure class="photo photo--two">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w"
-          alt="Amasa Bruce drumming close-up"
-          style="--y:-24%;" />
-      </figure>
+      <div class="card-photo two"
+           style="background-image:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w'); --pos-x:50%; --pos-y:20%;">
+      </div>
     </div>
   </div>
 </section>
-
 </body>
 </html>
