@@ -4,150 +4,119 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Amasa Bruce — Drummer for Hire</title>
-<meta name="description" content="Amasa Bruce • Touring • Lessons • Studio Sessions • Backline & Sound" />
+<meta name="description" content="Sessions • Tours • Lessons • Backline & Sound" />
 <style>
-  /* ===== Reset & base ===== */
-  html, body { margin:0; padding:0; }
-  * { box-sizing: border-box; }
-  body {
-    font: 16px/1.55 system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif;
-    color: #fff;
-    background: #0b0c0f; /* black base */
-    -webkit-font-smoothing: antialiased;
+  /* ===== Base ===== */
+  html,body{margin:0;padding:0}
+  *{box-sizing:border-box}
+  body{
+    font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+    color:#fff; background:#0b0c0f; -webkit-font-smoothing:antialiased;
   }
-  a { color: inherit; text-decoration: none; }
+  a{color:inherit;text-decoration:none}
 
-  /* ===== HERO (always at top) ===== */
-  .hero {
-    position: relative;
-    padding: clamp(28px, 6vw, 60px) 0;  /* comfortable top spacing */
+  /* ===== Hero (top) ===== */
+  .hero{
+    position:relative; isolation:isolate; overflow:hidden;
+    padding:clamp(28px,6vw,60px) 0;
     background:
-      radial-gradient(60% 45% at 15% 10%, #ff7a1a22 0%, transparent 60%),
-      radial-gradient(55% 45% at 85% 85%, #ffb36618 0%, transparent 60%),
+      radial-gradient(60% 45% at 14% 12%, #ff7a1a22 0%, transparent 60%),
+      radial-gradient(55% 45% at 86% 88%, #ffb36618 0%, transparent 58%),
       #0b0c0f;
-    overflow: hidden;
-    isolation: isolate;
   }
-  .hero .wrap {
-    width: min(1200px, 92vw);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.1fr .9fr; /* copy first, images second */
-    gap: clamp(24px, 4vw, 40px);
-    align-items: start; /* keeps text locked to top */
+  .hero .wrap{
+    width:min(1200px,92vw); margin:0 auto;
+    display:grid; gap:clamp(28px,4vw,48px);
+    grid-template-columns:1.05fr .95fr; align-items:start;
   }
-  @media (max-width: 900px) {
-    .hero .wrap {
-      grid-template-columns: 1fr;
-    }
-  }
+  @media (max-width:980px){ .hero .wrap{ grid-template-columns:1fr } }
 
-  /* ===== LEFT (copy) ===== */
-  .card {
-    background: #0c0d11cc;
-    border: 1px solid #ffffff22;
-    border-radius: 20px;
-    backdrop-filter: blur(10px) saturate(1.1);
-    box-shadow: 0 28px 80px rgba(0,0,0,.35);
-    padding: clamp(22px, 3.4vw, 32px);
+  /* ===== Left: copy (bolder + even spacing) ===== */
+  .card{
+    background:#0c0d11cc; border:1px solid #ffffff22; border-radius:20px;
+    backdrop-filter:blur(10px) saturate(1.08);
+    box-shadow:0 28px 80px rgba(0,0,0,.35);
+    padding:clamp(22px,3.6vw,34px); display:flex; flex-direction:column; gap:18px;
   }
-  .brand {
-    display: inline-block;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-    font-size: 14px;
-    background: linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    margin-bottom: 6px;
+  .brand{
+    display:inline-block; font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:14px;
+    background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  h1 {
-    margin: 0 0 6px 0;
-    font-size: clamp(34px, 5vw, 64px);
-    line-height: 1.06;
-    font-weight: 900;
+  h1{margin:0; font-size:clamp(36px,5vw,68px); line-height:1.05; font-weight:900}
+  .tag{margin:0; color:#ffb366; font-weight:700; font-size:clamp(16px,2.2vw,20px)}
+  .chips{
+    display:flex; flex-wrap:wrap; gap:12px; margin-top:4px
   }
-  .tag {
-    margin: 0 0 14px 0;
-    font-size: clamp(16px, 2.2vw, 20px);
-    color: #ffb366;
-    font-weight: 700;
+  .chip{
+    border:2px solid #ff7a1a; background:rgba(255,122,26,.10);
+    color:#fff; font-weight:800; font-size:14px; padding:10px 14px; border-radius:999px; letter-spacing:.02em;
   }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; font-weight:900;
+    border-radius:12px; padding:12px 18px; border:none; cursor:pointer;
+    transition:transform .15s ease, filter .15s ease; box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .btn.primary{background:linear-gradient(180deg,#ff7a1a,#b84e00); color:#fff}
+  .btn.secondary{background:transparent; border:2px solid #ff7a1a; color:#ff7a1a}
+  .btn:hover{transform:translateY(-1px); filter:brightness(1.06)}
 
-  /* Bolder, evenly spaced service row */
-  .chips {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin: 12px 0 16px;
+  /* ===== Right: curated collage (artistic, no weird spacing) ===== */
+  .collage{
+    position:relative; width:100%; aspect-ratio: 5 / 4;  /* cohesive field */
+    border-radius:20px; overflow:hidden;
+    background:linear-gradient(180deg,#0f1014,#0b0c0f);
+    box-shadow:0 28px 80px rgba(0,0,0,.40), inset 0 0 0 1px #1b1d22;
+    padding:clamp(10px,1.8vw,16px);
   }
-  @media (min-width: 560px) {
-    .chips { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .collage-inner{
+    position:relative; width:100%; height:100%;
+    border-radius:16px; overflow:hidden;
+    background:radial-gradient(120% 90% at -10% -10%, #ff7a1a22 0%, transparent 60%),
+               radial-gradient(110% 100% at 120% 120%, #ffb36618 0%, transparent 65%);
   }
-  .chip {
-    border: 2px solid #ff7a1a;
-    background: rgba(255,122,26,.10);
-    color: #fff;
-    font-weight: 800;
-    font-size: 14px;
-    padding: 10px 12px;
-    border-radius: 999px;
-    text-align: center;
-    letter-spacing: .02em;
+  /* Common frame styling */
+  .frame{
+    position:absolute; overflow:hidden; border-radius:16px;
+    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    outline:1px solid #ffffff1a;           /* thin border */
+    background:#000;
   }
+  .frame img{
+    width:100%; height:100%; display:block;
+    object-fit:cover; object-position:center; /* cover = no letterboxing */
+    filter:saturate(1.08) contrast(1.06);
+  }
+  .glow{ position:absolute; inset:auto; width:50%; height:40%;
+         background:radial-gradient(60% 60% at 50% 50%, #ff7a1a33 0%, transparent 60%);
+         pointer-events:none; filter:blur(24px) }
 
-  .cta-row {
-    display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px;
+  /* Frame layout (contained, tasteful overlap) */
+  /* A: Main hero frame */
+  .frame-a{
+    left:4%; top:6%;
+    width:64%; height:60%;
+    transform:rotate(-1.5deg);
   }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 900; border-radius: 12px; padding: 12px 18px; border: none; cursor: pointer;
-    transition: transform .15s ease, filter .15s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  /* B: Offset supporting frame */
+  .frame-b{
+    right:4%; top:12%;
+    width:46%; height:46%;
+    transform:rotate(2.5deg);
   }
-  .btn.primary { background: linear-gradient(180deg,#ff7a1a,#b84e00); color:#fff; }
-  .btn.secondary { background: transparent; border: 2px solid #ff7a1a; color:#ff7a1a; }
-  .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-
-  /* ===== RIGHT (image cascade — neat, smaller, size-to-fit) ===== */
-  .cascade {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    align-content: start; /* keeps the group snug under the top */
+  /* C: Vertical strip */
+  .frame-c{
+    left:12%; bottom:6%;
+    width:36%; height:42%;
+    transform:rotate(-3deg);
   }
-  /* small, consistent frames */
-  .thumb {
-    background: #0e0f13;
-    border: 1px solid #1f2128;
-    border-radius: 14px;
-    padding: 8px;                 /* frame padding so "contain" has breathing room */
-    aspect-ratio: 4 / 3;          /* consistent box shape */
-    display: grid; place-items: center;
-    box-shadow: 0 16px 40px rgba(0,0,0,.35);
-    overflow: hidden;             /* prevents any overflow if images are odd sizes */
-  }
-  /* size-to-fit: contain (no cropping), center the image */
-  .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;          /* 👈 "size-to-fit" equivalent */
-    object-position: center;
-    display: block;
-    image-rendering: auto;
-  }
-
-  /* Subtle cascade offsets for a clean stepped look */
-  .thumb:nth-child(2) { margin-top: 8px; }
-  .thumb:nth-child(3) { margin-top: 16px; }
-  .thumb:nth-child(4) { margin-top: 24px; }
-
-  /* On wider screens, use 3 columns and gentler offsets */
-  @media (min-width: 900px) {
-    .cascade { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .thumb:nth-child(2) { margin-top: 6px; }
-    .thumb:nth-child(3) { margin-top: 12px; }
-    .thumb:nth-child(4) { margin-top: 18px; }
+  /* Safety on small screens: reduce overlap/rotation */
+  @media (max-width:700px){
+    .collage{ aspect-ratio: 4 / 5 }
+    .frame-a{ left:5%; top:6%; width:84%; height:46%; transform:rotate(-1deg) }
+    .frame-b{ right:6%; top:56%; width:72%; height:34%; transform:rotate(1.5deg) }
+    .frame-c{ display:none } /* hide third frame on very small screens for neatness */
   }
 </style>
 </head>
@@ -155,7 +124,7 @@
 
 <section class="hero" id="hero">
   <div class="wrap">
-    <!-- LEFT: Drummer-for-hire (locks to the top) -->
+    <!-- LEFT: Drummer-for-hire (top-first) -->
     <div class="card">
       <span class="brand">Cavalry Sounds • Amasa Bruce</span>
       <h1>Professional Drummer for Hire</h1>
@@ -174,20 +143,27 @@
       </div>
     </div>
 
-    <!-- RIGHT: Image cascade (smaller + contain) -->
-    <div class="cascade" aria-label="Performance image cascade">
-      <figure class="thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w" alt="Amasa live performance — wide">
-      </figure>
-      <figure class="thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w" alt="Amasa drum close-up">
-      </figure>
-      <figure class="thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w" alt="Amasa live performance — alt angle">
-      </figure>
-      <figure class="thumb">
-        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w" alt="Amasa drum close-up — alt">
-      </figure>
+    <!-- RIGHT: Artistic collage (no weird spacing) -->
+    <div class="collage" aria-label="Performance collage">
+      <div class="collage-inner">
+        <!-- Main hero frame -->
+        <figure class="frame frame-a">
+          <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w" alt="Amasa Bruce performing live — wide">
+        </figure>
+
+        <!-- Supporting frame -->
+        <figure class="frame frame-b">
+          <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w" alt="Amasa Bruce drum close-up">
+        </figure>
+
+        <!-- Vertical strip (uses the first URL again but masked differently so it doesn’t look like a “duplicate”) -->
+        <figure class="frame frame-c">
+          <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w" alt="Amasa Bruce live — vertical crop">
+        </figure>
+
+        <span class="glow" style="left:8%; bottom:8%"></span>
+        <span class="glow" style="right:8%; top:10%"></span>
+      </div>
     </div>
   </div>
 </section>
