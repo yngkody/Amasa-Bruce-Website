@@ -50,21 +50,9 @@
     background-position: var(--pos-x) var(--pos-y);
   }
 
-/* Bottom card (slightly lower & more left) */
-.card-photo.one {
-  top: 20%;           /* moved a little lower */
-  left: 6%;           /* shifted further left */
-  transform: rotate(-4deg);
-}
+.card-photo.one { top: 22%; left: 4%; transform: rotate(-5deg); }
+.card-photo.two { top: 0%;  left: 32%; transform: rotate(6deg); }
 
-/* Top card (higher & more right so both are visible) */
-.card-photo.two {
-  top: 2%;            /* raised a bit higher */
-  left: 28%;          /* moved further right */
-  transform: rotate(5deg);
-  z-index: 2;
-  box-shadow: 0 34px 80px rgba(0,0,0,.6);
-}
 
   /* Mobile tidy */
   @media (max-width:700px){
