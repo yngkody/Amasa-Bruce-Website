@@ -1,189 +1,193 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amasa Bruce — Professional Drummer</title>
-  <meta name="description" content="Amasa Bruce • Sessions • Tours • Lessons • Backline & Sound" />
-  <style>
-    /* =================== RESET =================== */
-    html,body{height:100%;margin:0;padding:0;}
-    *{box-sizing:border-box;}
-    body{
-      font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
-      background:#0b0c0f;
-      color:#fff;
-      line-height:1.6;
-      -webkit-font-smoothing:antialiased;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amasa Bruce — Drummer for Hire</title>
+<meta name="description" content="Amasa Bruce • Touring • Lessons • Studio Sessions • Backline & Sound" />
+<style>
+  /* ===== Reset & base ===== */
+  html, body { margin:0; padding:0; }
+  * { box-sizing: border-box; }
+  body {
+    font: 16px/1.55 system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial, sans-serif;
+    color: #fff;
+    background: #0b0c0f; /* black base */
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
 
-    /* =================== HERO =================== */
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:radial-gradient(circle at 25% 20%,#ff7a1a33 0%,transparent 60%),
-                 radial-gradient(circle at 80% 80%,#ffb36622 0%,transparent 55%),
-                 #0b0c0f;
-      overflow:hidden;
-      position:relative;
-      isolation:isolate;
+  /* ===== HERO (always at top) ===== */
+  .hero {
+    position: relative;
+    padding: clamp(28px, 6vw, 60px) 0;  /* comfortable top spacing */
+    background:
+      radial-gradient(60% 45% at 15% 10%, #ff7a1a22 0%, transparent 60%),
+      radial-gradient(55% 45% at 85% 85%, #ffb36618 0%, transparent 60%),
+      #0b0c0f;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero .wrap {
+    width: min(1200px, 92vw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr; /* copy first, images second */
+    gap: clamp(24px, 4vw, 40px);
+    align-items: start; /* keeps text locked to top */
+  }
+  @media (max-width: 900px) {
+    .hero .wrap {
+      grid-template-columns: 1fr;
     }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23f)" opacity="0.08"/></svg>');
-      background-size:160px 160px;
-      mix-blend-mode:overlay;
-      pointer-events:none;
-      z-index:0;
-    }
+  }
 
-    /* =================== LAYOUT =================== */
-    .hero-wrap{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:clamp(40px,6vw,80px);
-      align-items:center;
-      width:min(1200px,92vw);
-      margin:0 auto;
-      position:relative;
-      z-index:1;
-    }
-    @media(max-width:900px){.hero-wrap{grid-template-columns:1fr; text-align:center;}}
+  /* ===== LEFT (copy) ===== */
+  .card {
+    background: #0c0d11cc;
+    border: 1px solid #ffffff22;
+    border-radius: 20px;
+    backdrop-filter: blur(10px) saturate(1.1);
+    box-shadow: 0 28px 80px rgba(0,0,0,.35);
+    padding: clamp(22px, 3.4vw, 32px);
+  }
+  .brand {
+    display: inline-block;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    font-size: 14px;
+    background: linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    margin-bottom: 6px;
+  }
+  h1 {
+    margin: 0 0 6px 0;
+    font-size: clamp(34px, 5vw, 64px);
+    line-height: 1.06;
+    font-weight: 900;
+  }
+  .tag {
+    margin: 0 0 14px 0;
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: #ffb366;
+    font-weight: 700;
+  }
 
-    /* =================== LEFT (TEXT) =================== */
-    .hero-text{
-      display:flex;
-      flex-direction:column;
-      gap:22px;
-      background:#0c0d11cc;
-      border:1px solid #ffffff22;
-      border-radius:20px;
-      padding:clamp(28px,4vw,36px);
-      backdrop-filter:blur(10px);
-      box-shadow:0 28px 80px rgba(0,0,0,.35);
-    }
-    .brand{
-      display:inline-block;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.03em;
-      font-size:14px;
-      background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    h1{
-      margin:0;
-      font-size:clamp(36px,5vw,68px);
-      line-height:1.05;
-      font-weight:900;
-    }
-    .tag{
-      font-size:clamp(17px,2.2vw,22px);
-      color:#ffb366;
-      font-weight:600;
-      margin:0;
-    }
+  /* Bolder, evenly spaced service row */
+  .chips {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 12px 0 16px;
+  }
+  @media (min-width: 560px) {
+    .chips { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  .chip {
+    border: 2px solid #ff7a1a;
+    background: rgba(255,122,26,.10);
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    text-align: center;
+    letter-spacing: .02em;
+  }
 
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin:12px 0;
-    }
-    .chip{
-      border:2px solid #ff7a1a;
-      background:rgba(255,122,26,0.1);
-      color:#fff;
-      font-weight:700;
-      font-size:14px;
-      padding:10px 16px;
-      border-radius:999px;
-      letter-spacing:.02em;
-    }
+  .cta-row {
+    display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 900; border-radius: 12px; padding: 12px 18px; border: none; cursor: pointer;
+    transition: transform .15s ease, filter .15s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+  .btn.primary { background: linear-gradient(180deg,#ff7a1a,#b84e00); color:#fff; }
+  .btn.secondary { background: transparent; border: 2px solid #ff7a1a; color:#ff7a1a; }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
 
-    .cta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:16px;
-      margin-top:10px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:800;
-      border:none;
-      border-radius:12px;
-      padding:14px 22px;
-      cursor:pointer;
-      text-decoration:none;
-      transition:all .2s ease;
-    }
-    .btn.primary{
-      background:linear-gradient(180deg,#ff7a1a,#b84e00);
-      color:#fff;
-      box-shadow:0 8px 24px rgba(255,122,26,.35);
-    }
-    .btn.primary:hover{transform:translateY(-2px);}
-    .btn.secondary{
-      background:transparent;
-      border:2px solid #ff7a1a;
-      color:#ff7a1a;
-    }
-    .btn.secondary:hover{
-      background:#ff7a1a;
-      color:#fff;
-    }
+  /* ===== RIGHT (image cascade — neat, smaller, size-to-fit) ===== */
+  .cascade {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    align-content: start; /* keeps the group snug under the top */
+  }
+  /* small, consistent frames */
+  .thumb {
+    background: #0e0f13;
+    border: 1px solid #1f2128;
+    border-radius: 14px;
+    padding: 8px;                 /* frame padding so "contain" has breathing room */
+    aspect-ratio: 4 / 3;          /* consistent box shape */
+    display: grid; place-items: center;
+    box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    overflow: hidden;             /* prevents any overflow if images are odd sizes */
+  }
+  /* size-to-fit: contain (no cropping), center the image */
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;          /* 👈 "size-to-fit" equivalent */
+    object-position: center;
+    display: block;
+    image-rendering: auto;
+  }
 
-    /* =================== RIGHT (IMAGES) =================== */
-    .hero-images{
-      display:grid;
-      gap:20px;
-      grid-template-rows:repeat(2,1fr);
-    }
-    @media(max-width:900px){.hero-images{max-width:600px;margin:0 auto;}}
-    .hero-images img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:18px;
-      box-shadow:0 24px 64px rgba(0,0,0,.4);
-    }
-  </style>
+  /* Subtle cascade offsets for a clean stepped look */
+  .thumb:nth-child(2) { margin-top: 8px; }
+  .thumb:nth-child(3) { margin-top: 16px; }
+  .thumb:nth-child(4) { margin-top: 24px; }
+
+  /* On wider screens, use 3 columns and gentler offsets */
+  @media (min-width: 900px) {
+    .cascade { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .thumb:nth-child(2) { margin-top: 6px; }
+    .thumb:nth-child(3) { margin-top: 12px; }
+    .thumb:nth-child(4) { margin-top: 18px; }
+  }
+</style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="hero-wrap">
-    <!-- LEFT: text -->
-    <div class="hero-text">
+<section class="hero" id="hero">
+  <div class="wrap">
+    <!-- LEFT: Drummer-for-hire (locks to the top) -->
+    <div class="card">
       <span class="brand">Cavalry Sounds • Amasa Bruce</span>
       <h1>Professional Drummer for Hire</h1>
       <p class="tag">Touring • Lessons • Studio Sessions</p>
 
-      <div class="chips">
+      <div class="chips" aria-label="Core services">
         <span class="chip">Live Band</span>
         <span class="chip">Studio Recording</span>
         <span class="chip">Private Lessons</span>
-        <span class="chip">Backline & Sound</span>
+        <span class="chip">Backline &amp; Sound</span>
       </div>
 
       <div class="cta-row">
-        <a href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce" class="btn primary">Book Amasa</a>
-        <a href="https://instagram.com/Gtm_masa" target="_blank" class="btn secondary">Instagram</a>
+        <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
+        <a class="btn secondary" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
 
-    <!-- RIGHT: photos -->
-    <div class="hero-images">
-      <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=1500w" alt="Amasa Bruce performing live">
-      <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=1000w" alt="Amasa Bruce close-up playing drums">
+    <!-- RIGHT: Image cascade (smaller + contain) -->
+    <div class="cascade" aria-label="Performance image cascade">
+      <figure class="thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w" alt="Amasa live performance — wide">
+      </figure>
+      <figure class="thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w" alt="Amasa drum close-up">
+      </figure>
+      <figure class="thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/b480ecd0-b4f9-44d3-aae7-a5f0581a4f9d/image3.jpeg?format=750w" alt="Amasa live performance — alt angle">
+      </figure>
+      <figure class="thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w" alt="Amasa drum close-up — alt">
+      </figure>
     </div>
   </div>
 </section>
