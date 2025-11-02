@@ -3,103 +3,128 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Amasa Bruce — Drummer for Hire</title>
+<title>Amasa Bruce — Professional Drummer</title>
+<meta name="description" content="Amasa Bruce — professional drummer for touring, lessons, and studio sessions." />
 <style>
-  html,body{margin:0;padding:0}*{box-sizing:border-box}
-  body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;background:#0b0c0f;color:#fff}
+  /* ========== Base ==========
+     Self-contained so GP can't miss styles */
+  html,body{margin:0;padding:0}
+  *{box-sizing:border-box}
+  body{
+    font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+    color:#fff; background:#0b0c0f; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
 
-  /* ===== HERO (top, copy left • deck right) ===== */
-  .hero{padding:clamp(28px,6vw,60px) 0;background:
-    radial-gradient(60% 45% at 14% 12%, #ff7a1a22 0%, transparent 60%),
-    radial-gradient(55% 45% at 86% 88%, #ffb36618 0%, transparent 60%),
-    #0b0c0f;}
-  .wrap{width:min(1200px,92vw);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,48px);align-items:start}
-  @media (max-width:900px){.wrap{grid-template-columns:1fr}}
+  /* ========== Hero (top) ========== */
+  .hero{
+    padding:clamp(28px,6vw,60px) 0;
+    background:
+      radial-gradient(60% 45% at 14% 12%, #ff7a1a22 0%, transparent 60%),
+      radial-gradient(55% 45% at 86% 88%, #ffb36618 0%, transparent 60%),
+      #0b0c0f;
+    position:relative;
+    overflow:visible; /* allow deck to breathe */
+  }
+  .wrap{
+    width:min(1200px,92vw);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;  /* copy | collage */
+    gap:clamp(28px,4vw,48px);
+    align-items:start;                   /* keep copy locked to top */
+  }
+  @media (max-width:900px){ .wrap{ grid-template-columns:1fr } }
 
-  /* ===== LEFT: copy ===== */
-  .card{background:#0c0d11cc;border:1px solid #ffffff22;border-radius:20px;backdrop-filter:blur(10px) saturate(1.08);
-        box-shadow:0 28px 80px rgba(0,0,0,.35);padding:clamp(22px,3.6vw,34px);display:flex;flex-direction:column;gap:18px}
-  .brand{font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:14px;
-         background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  /* ========== Left: copy card ========== */
+  .card{
+    background:#0c0d11cc; border:1px solid #ffffff22; border-radius:20px;
+    backdrop-filter:blur(10px) saturate(1.08);
+    box-shadow:0 28px 80px rgba(0,0,0,.35);
+    padding:clamp(22px,3.6vw,34px);
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .brand{
+    font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:14px;
+    background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
   h1{margin:0;font-size:clamp(36px,5vw,68px);line-height:1.05;font-weight:900}
   .tag{margin:0;color:#ffb366;font-weight:700;font-size:clamp(16px,2.2vw,20px)}
   .chips{display:flex;flex-wrap:wrap;gap:12px}
-  .chip{border:2px solid #ff7a1a;background:rgba(255,122,26,.10);color:#fff;font-weight:800;font-size:14px;padding:10px 14px;border-radius:999px}
+  .chip{
+    border:2px solid #ff7a1a; background:rgba(255,122,26,.10);
+    color:#fff; font-weight:800; font-size:14px; padding:10px 14px; border-radius:999px;
+  }
   .cta{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:900;border-radius:12px;padding:12px 18px;border:none;cursor:pointer;
-       transition:transform .15s ease,filter .15s ease;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;font-weight:900;
+    border-radius:12px;padding:12px 18px;border:none;cursor:pointer;
+    transition:transform .15s ease,filter .15s ease; box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
   .btn.primary{background:linear-gradient(180deg,#ff7a1a,#b84e00);color:#fff}
   .btn.secondary{background:transparent;border:2px solid #ff7a1a;color:#ff7a1a}
   .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 
-  /* ===== RIGHT: true deck-of-cards collage (overlap) ===== */
-/* ===== Deck container: keep rounded bg, but don't clip photos ===== */
-.deck{
-  position:relative;
-  width:100%;
-  aspect-ratio: 5 / 4;
-  /* let the cards breathe outside the rounded panel */
-  overflow: visible;                 /* <-- was hidden */
-}
+  /* ========== Right: deck-of-cards collage ========== */
+  .deck{
+    position:relative;
+    width:100%;
+    aspect-ratio:5/4;        /* gives a clean canvas */
+    overflow:visible;         /* photos may extend beyond the panel */
+  }
+  /* Inner rounded background panel (keeps the nice gradient) */
+  .deck-bg{
+    position:absolute; inset:0;
+    border-radius:20px; overflow:hidden;
+    background:linear-gradient(180deg,#0f1014,#0b0c0f);
+    box-shadow:0 28px 80px rgba(0,0,0,.40), inset 0 0 0 1px #1b1d22;
+  }
+  .deck-bg::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(60% 60% at 50% 50%, #ff7a1a22 0%, transparent 70%);
+    filter:blur(30px);
+  }
 
-/* Inner bg panel keeps the rounded/gradient look */
-.deck-bg{
-  position:absolute; inset:0;
-  border-radius:20px; overflow:hidden;
-  background:linear-gradient(180deg,#0f1014,#0b0c0f);
-  box-shadow:0 28px 80px rgba(0,0,0,.40), inset 0 0 0 1px #1b1d22;
-}
-.deck-bg::before{
-  content:""; position:absolute; inset:0;
-  background:radial-gradient(60% 60% at 50% 50%, #ff7a1a22 0%, transparent 70%);
-  filter:blur(30px);
-}
+  /* Photo cards (background-image for reliable face control) */
+  .card-photo{
+    --pos-x: 50%;   /* horizontal face focus (0% left, 100% right) */
+    --pos-y: 22%;   /* vertical face focus: smaller = higher */
+    position:absolute; z-index:1;
+    width:74%; height:68%;          /* size of each card */
+    border-radius:18px; outline:1px solid #ffffff1a; background:#000;
+    background-image: var(--img);
+    background-size:cover; background-repeat:no-repeat;
+    background-position: var(--pos-x) var(--pos-y);
+    box-shadow:0 26px 64px rgba(0,0,0,.48);
+  }
+  /* Bottom card */
+  .card-photo.one{
+    top:24%; left:4%;               /* spread left/lower */
+    transform:rotate(-4deg);
+  }
+  /* Top card */
+  .card-photo.two{
+    top:-2%; left:36%;              /* spread right/higher so both are visible */
+    transform:rotate(5deg);
+    z-index:2; box-shadow:0 34px 80px rgba(0,0,0,.6);
+  }
 
-/* Photo cards (now allowed to extend beyond the panel edges) */
-.card-photo{
-  --pos-x: 50%;
-  --pos-y: 22%;                       /* lift face a bit */
-  position:absolute; z-index:1;
-  width: 74%;                          /* a touch larger for clarity */
-  height: 68%;
-  border-radius:18px;
-  outline:1px solid #ffffff1a;
-  background:#000;
-  background-image: var(--img);
-  background-size: cover;
-  background-position: var(--pos-x) var(--pos-y);
-  box-shadow:0 26px 64px rgba(0,0,0,.48);
-}
-
-/* Wider spread so both are clearly visible */
-.card-photo.one{
-  top: 24%;       /* lower */
-  left: 4%;       /* farther left */
-  transform: rotate(-4deg);
-}
-.card-photo.two{
-  top: -2%;       /* higher */
-  left: 36%;      /* much farther right */
-  transform: rotate(5deg);
-  z-index: 2;
-  box-shadow:0 34px 80px rgba(0,0,0,.6);
-}
-
-/* Mobile tidy */
-@media (max-width:700px){
-  .deck{ aspect-ratio: 4 / 5; }
-  .card-photo{ width: 82%; height: 60%; }
-  .card-photo.one{ top: 26%; left: 6%; transform: rotate(-3deg); }
-  .card-photo.two{ top: 6%;  left: 22%; transform: rotate(3deg); }
-  .card-photo{ --pos-y: 20%; }       /* lift face a bit more on small screens */
-}
-
+  /* Mobile tidy */
+  @media (max-width:700px){
+    .deck{ aspect-ratio:4/5 }
+    .card-photo{ width:82%; height:60% }
+    .card-photo.one{ top:26%; left:6%; transform:rotate(-3deg) }
+    .card-photo.two{ top:6%;  left:22%; transform:rotate(3deg) }
+    .card-photo{ --pos-y: 20%; }     /* lift face a touch more on small screens */
+  }
 </style>
 </head>
 <body>
-<section class="hero">
+
+<section class="hero" id="hero">
   <div class="wrap">
-    <!-- LEFT -->
+    <!-- LEFT: Drummer for hire -->
     <div class="card">
       <span class="brand">Cavalry Sounds • Amasa Bruce</span>
       <h1>Professional Drummer for Hire</h1>
@@ -118,18 +143,20 @@
       </div>
     </div>
 
-    <!-- RIGHT: deck collage (overlapping cards) -->
+    <!-- RIGHT: Deck collage -->
     <div class="deck" aria-label="Performance collage">
+      <div class="deck-bg" aria-hidden="true"></div>
+
       <!-- Bottom card -->
       <div class="card-photo one"
-           style="background-image:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w'); --pos-x:50%; --pos-y:22%;">
-      </div>
+           style="--img:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w'); --pos-x:50%; --pos-y:22%;"></div>
+
       <!-- Top card -->
       <div class="card-photo two"
-           style="background-image:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w'); --pos-x:50%; --pos-y:20%;">
-      </div>
+           style="--img:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w'); --pos-x:50%; --pos-y:20%;"></div>
     </div>
   </div>
 </section>
+
 </body>
 </html>
