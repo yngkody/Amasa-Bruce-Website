@@ -33,35 +33,67 @@
   .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
 
   /* ===== RIGHT: true deck-of-cards collage (overlap) ===== */
-  .deck{
-    position:relative; width:100%; aspect-ratio:5/4; border-radius:20px; overflow:hidden;
-    background:linear-gradient(180deg,#0f1014,#0b0c0f);
-  }
-  .deck::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%, #ff7a1a22 0%, transparent 70%);filter:blur(30px);z-index:0}
+/* ===== Deck container: keep rounded bg, but don't clip photos ===== */
+.deck{
+  position:relative;
+  width:100%;
+  aspect-ratio: 5 / 4;
+  /* let the cards breathe outside the rounded panel */
+  overflow: visible;                 /* <-- was hidden */
+}
 
-  /* Photo card uses background-image so we can hard-center face via background-position */
-  .card-photo{
-    --pos-x: 50%;   /* horizontal face focus */
-    --pos-y: 24%;   /* vertical face focus (smaller = higher) */
-    position:absolute; z-index:1; width:72%; height:68%;
-    border-radius:18px; outline:1px solid #ffffff1a; box-shadow:0 26px 64px rgba(0,0,0,.48);
-    background-color:#000;
-    background-size:cover; background-repeat:no-repeat;
-    background-position: var(--pos-x) var(--pos-y);
-  }
+/* Inner bg panel keeps the rounded/gradient look */
+.deck-bg{
+  position:absolute; inset:0;
+  border-radius:20px; overflow:hidden;
+  background:linear-gradient(180deg,#0f1014,#0b0c0f);
+  box-shadow:0 28px 80px rgba(0,0,0,.40), inset 0 0 0 1px #1b1d22;
+}
+.deck-bg::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(60% 60% at 50% 50%, #ff7a1a22 0%, transparent 70%);
+  filter:blur(30px);
+}
 
-.card-photo.one { top: 22%; left: 4%; transform: rotate(-5deg); }
-.card-photo.two { top: 0%;  left: 32%; transform: rotate(6deg); }
+/* Photo cards (now allowed to extend beyond the panel edges) */
+.card-photo{
+  --pos-x: 50%;
+  --pos-y: 22%;                       /* lift face a bit */
+  position:absolute; z-index:1;
+  width: 74%;                          /* a touch larger for clarity */
+  height: 68%;
+  border-radius:18px;
+  outline:1px solid #ffffff1a;
+  background:#000;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: var(--pos-x) var(--pos-y);
+  box-shadow:0 26px 64px rgba(0,0,0,.48);
+}
 
+/* Wider spread so both are clearly visible */
+.card-photo.one{
+  top: 24%;       /* lower */
+  left: 4%;       /* farther left */
+  transform: rotate(-4deg);
+}
+.card-photo.two{
+  top: -2%;       /* higher */
+  left: 36%;      /* much farther right */
+  transform: rotate(5deg);
+  z-index: 2;
+  box-shadow:0 34px 80px rgba(0,0,0,.6);
+}
 
-  /* Mobile tidy */
-  @media (max-width:700px){
-    .deck{aspect-ratio:4/5}
-    .card-photo{ width:82%; height:60% }
-    .card-photo.one{ top:22%; left:8%; transform:rotate(-2.5deg) }
-    .card-photo.two{ top:12%; left:16%; transform:rotate(2.5deg) }
-    .card-photo{ --pos-y: 22%; } /* lift face a bit more on small screens */
-  }
+/* Mobile tidy */
+@media (max-width:700px){
+  .deck{ aspect-ratio: 4 / 5; }
+  .card-photo{ width: 82%; height: 60%; }
+  .card-photo.one{ top: 26%; left: 6%; transform: rotate(-3deg); }
+  .card-photo.two{ top: 6%;  left: 22%; transform: rotate(3deg); }
+  .card-photo{ --pos-y: 20%; }       /* lift face a bit more on small screens */
+}
+
 </style>
 </head>
 <body>
