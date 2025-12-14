@@ -65,14 +65,17 @@
     justify-content:flex-end;
     padding:clamp(18px,4vw,44px);
   }
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  max-width:min(560px, 92vw);
+  justify-content:flex-end;
 
-  .hero-actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    max-width:min(560px, 92vw);
-    justify-content:flex-end;
-  }
+  position:relative;
+  bottom:-32px; /* pushes buttons DOWN */
+}
+
 /* ===== MOBILE HERO IMAGE ===== */
 @media (max-width: 768px){
   .hero{
@@ -84,15 +87,14 @@
     background: url("amasa-hero-mobile.png") center bottom / cover no-repeat;
   }
 
-  .hero-inner{
-    justify-content:center;
-    padding:24px 16px;
-  }
+.hero-inner{
+  align-items:flex-end;
+}
 
-  .hero-actions{
-    width:100%;
-    justify-content:center;
-  }
+.hero-actions{
+  margin-bottom:24px; /* or 16px / 32px */
+}
+
 }
 
  /* ===== MODERN BUTTONS ===== */
@@ -155,7 +157,8 @@
 .btn.danger:hover{
   background:rgba(255,59,48,.12);
 }
-  
+
+
 @media (max-width: 768px){
   .hero-actions{
     flex-direction:column;
