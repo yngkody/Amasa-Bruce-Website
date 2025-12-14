@@ -32,16 +32,20 @@
 
   /* ===== HERO (image-only with buttons) ===== */
 .hero{
-  height:clamp(100vh, 120vh, 140vh);
+  min-height: unset;
+  aspect-ratio: 1366 / 768;  /* adjust if your image is different */
+  background:#000;
 }
+
 
 
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
-  background: url("amasa-hero.png") center bottom / cover no-repeat;
+  background: url("amasa-hero.png") center / contain no-repeat;
 }
+
 
   /* subtle film overlay so buttons read on any part of image */
   .hero::after{
