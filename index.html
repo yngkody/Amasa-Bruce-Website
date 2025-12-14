@@ -4,142 +4,460 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Amasa Bruce — Drummer for Hire</title>
+
 <style>
-  html,body{margin:0;padding:0}
+  :root{
+    --bg:#0b0c0f;
+    --panel:#0f1117;
+    --ink:#ffffff;
+    --muted:#cfd3dd;
+
+    --yellow:#ffd400;
+    --yellow-2:#ffea66;
+    --red:#ff3b30;
+
+    --stroke:rgba(255,255,255,.14);
+    --stroke-2:rgba(255,255,255,.22);
+    --shadow:0 24px 70px rgba(0,0,0,.45);
+
+    --radius:18px;
+  }
+
   *{box-sizing:border-box}
-  body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;background:#0b0c0f;color:#fff}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif}
 
-  /* ===== HERO ===== */
+  a{color:inherit}
+  .wrap{width:min(1180px,92vw);margin:0 auto}
+
+  /* ===== HERO (image-only with buttons) ===== */
   .hero{
-    padding:clamp(28px,6vw,60px) 0;
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    align-items:stretch;
+    background:#000;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
     background:
-      radial-gradient(60% 45% at 14% 12%, #ff7a1a22 0%, transparent 60%),
-      radial-gradient(55% 45% at 86% 88%, #ffb36618 0%, transparent 60%),
-      #0b0c0f;
+      url("amasa-hero.png") center/cover no-repeat;
+    transform:scale(1.01);
   }
-  .wrap{
-    width:min(1200px,92vw);
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:1.05fr .95fr;   /* copy | collage */
-    gap:clamp(28px,4vw,48px);
-    align-items:start;
+  /* subtle film overlay so buttons read on any part of image */
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(80% 65% at 80% 85%, rgba(0,0,0,.55) 0%, rgba(0,0,0,.12) 55%, rgba(0,0,0,.00) 72%),
+      linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.35) 100%);
+    pointer-events:none;
   }
-  @media (max-width:900px){ .wrap{ grid-template-columns:1fr } }
 
-  /* ===== LEFT: copy ===== */
-  .card{
-    background:#0c0d11cc; border:1px solid #ffffff22; border-radius:20px;
-    backdrop-filter:blur(10px) saturate(1.08);
-    box-shadow:0 28px 80px rgba(0,0,0,.35);
-    padding:clamp(22px,3.6vw,34px);
-  }
-  .brand{
-    font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:14px;
-    background:linear-gradient(90deg,#fff,#ffb57b,#ff7a1a);
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-  }
-  h1{margin:.2em 0 .15em; font-size:clamp(36px,5vw,68px); line-height:1.05; font-weight:900}
-  .tag{margin:0 0 14px; color:#ffb366; font-weight:700; font-size:clamp(16px,2.2vw,20px)}
-  .chips{display:flex;flex-wrap:wrap;gap:12px;margin:6px 0 16px}
-  .chip{border:2px solid #ff7a1a;background:rgba(255,122,26,.10);padding:10px 14px;border-radius:999px;font-weight:800;font-size:14px}
-  .cta{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;justify-content:center;font-weight:900;border-radius:12px;padding:12px 18px;border:none;cursor:pointer;transition:transform .15s ease,filter .15s ease;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  .btn.primary{background:linear-gradient(180deg,#ff7a1a,#b84e00);color:#fff}
-  .btn.secondary{background:transparent;border:2px solid #ff7a1a;color:#ff7a1a}
-  .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
-
-  /* ===== RIGHT: collage (fits INSIDE container, evenly spaced) ===== */
-  .deck{
+  .hero-inner{
     position:relative;
     width:100%;
-    aspect-ratio:5/4;                 /* stable canvas */
-    border-radius:20px;
-    overflow:hidden;                   /* nothing can bleed out now */
-    background:linear-gradient(180deg,#0f1014,#0b0c0f);
-    box-shadow:0 28px 80px rgba(0,0,0,.40), inset 0 0 0 1px #1b1d22;
-    padding:clamp(10px,2vw,16px);      /* safe inset so cards never touch edges */
-  }
-  .deck-inner{
-    position:relative; width:100%; height:100%;
-    border-radius:16px; overflow:hidden;
-    background:
-      radial-gradient(60% 60% at 15% 15%, #ff7a1a18 0%, transparent 65%),
-      radial-gradient(60% 60% at 85% 85%, #ffb36614 0%, transparent 65%);
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    padding:clamp(18px,4vw,40px);
   }
 
-  /* Photo “cards” */
-  .card-photo{
-    --pos-x: 50%;
-    --pos-y: 22%;                      /* raise face a bit (smaller = higher) */
-    position:absolute;
-    width:56%;                          /* balanced size so both fit */
-    height:54%;
-    border-radius:16px;
-    outline:1px solid #ffffff1a;
-    background:#000;
-    background-image: var(--img);
-    background-size:cover;
-    background-repeat:no-repeat;
-    background-position: var(--pos-x) var(--pos-y);
-    box-shadow:0 22px 56px rgba(0,0,0,.45);
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    max-width:min(520px, 92vw);
+    justify-content:flex-end;
   }
 
-  /* Even diagonal placement INSIDE bounds (no overlap hiding) */
-  .card-photo.one{
-    top:6%; left:6%;
-    transform:rotate(-2deg);
+  .btn{
+    appearance:none;
+    border:2px solid rgba(255,212,0,.7);
+    background:rgba(0,0,0,.25);
+    color:var(--ink);
+    font-weight:900;
+    letter-spacing:.01em;
+    padding:12px 16px;
+    border-radius:14px;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    box-shadow:0 14px 40px rgba(0,0,0,.35);
+    backdrop-filter: blur(10px) saturate(1.1);
+    transition:transform .12s ease, filter .12s ease, background .12s ease;
   }
-  .card-photo.two{
-    bottom:6%; right:6%;
-    transform:rotate(2deg);
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+  .btn.primary{
+    background:linear-gradient(180deg, var(--yellow), #ffb800);
+    color:#0b0c0f;
+    border-color:transparent;
+  }
+  .btn.ghost{
+    background:rgba(0,0,0,.35);
+    border-color:rgba(255,255,255,.20);
+  }
+  .btn.danger{
+    border-color:rgba(255,59,48,.7);
   }
 
-  /* Mobile */
-  @media (max-width:700px){
-    .deck{ aspect-ratio:4/5 }
-    .card-photo{ width:64%; height:48%; }
-    .card-photo.one{ top:6%; left:6%; transform:rotate(-1.5deg) }
-    .card-photo.two{ bottom:6%; right:6%; transform:rotate(1.5deg) }
-    .card-photo{ --pos-y: 20%; }
+  /* ===== SECTIONS ===== */
+  section{
+    padding:clamp(44px,7vw,84px) 0;
+  }
+  .section-title{
+    font-size:clamp(24px,3.4vw,38px);
+    line-height:1.12;
+    margin:0 0 10px;
+    font-weight:1000;
+    letter-spacing:-.02em;
+  }
+  .section-sub{
+    margin:0 0 26px;
+    color:var(--muted);
+    font-weight:700;
+    max-width:70ch;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap:clamp(16px,3vw,26px);
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .grid{grid-template-columns:1fr}
+    .hero{min-height:78vh}
+    .hero-inner{justify-content:center}
+    .hero-actions{justify-content:center}
+  }
+
+  .panel{
+    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+    border:1px solid var(--stroke);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .panel-head{
+    padding:18px 18px 0;
+  }
+  .panel-body{
+    padding:18px;
+  }
+
+  /* ===== SERVICES LIST ===== */
+  .list{
+    display:grid;
+    gap:10px;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .pill{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 14px;
+    border-radius:14px;
+    border:1px solid var(--stroke);
+    background:rgba(0,0,0,.25);
+  }
+  .pill b{
+    font-weight:1000;
+    letter-spacing:.01em;
+  }
+  .price{
+    color:var(--yellow-2);
+    font-weight:1000;
+    white-space:nowrap;
+  }
+
+  /* ===== FORM ===== */
+  form{margin:0}
+  .form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  @media (max-width:700px){ .form-grid{grid-template-columns:1fr} }
+
+  label{
+    display:block;
+    font-weight:900;
+    letter-spacing:.01em;
+    margin:0 0 8px;
+    color:#fff;
+  }
+
+  input, select, textarea{
+    width:100%;
+    background:rgba(0,0,0,.35);
+    color:#fff;
+    border:1px solid var(--stroke-2);
+    border-radius:14px;
+    padding:12px 12px;
+    font-size:16px;
+    font-weight:750;          /* thick + readable */
+    outline:none;
+  }
+  input::placeholder, textarea::placeholder{color:rgba(255,255,255,.55);font-weight:750}
+  input:focus, select:focus, textarea:focus{
+    border-color:rgba(255,212,0,.75);
+    box-shadow:0 0 0 4px rgba(255,212,0,.12);
+  }
+  textarea{min-height:120px;resize:vertical}
+
+  .form-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:14px;
+  }
+  .submit{
+    background:linear-gradient(180deg, var(--yellow), #ffb800);
+    color:#0b0c0f;
+    border:none;
+    font-weight:1000;
+    border-radius:14px;
+    padding:12px 16px;
+    cursor:pointer;
+    box-shadow:0 18px 46px rgba(0,0,0,.40);
+  }
+  .small{
+    font-size:14px;
+    color:rgba(255,255,255,.75);
+    font-weight:700;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    padding:28px 0 46px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:rgba(255,255,255,.75);
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .links{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .link{
+    padding:10px 12px;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:900;
+    color:#fff;
+    background:rgba(0,0,0,.25);
   }
 </style>
 </head>
+
 <body>
 
-<section class="hero" id="hero">
-  <div class="wrap">
-    <!-- LEFT -->
-    <div class="card">
-      <span class="brand">Cavalry Sounds • Amasa Bruce</span>
-      <h1>Professional Drummer for Hire</h1>
-      <p class="tag">Touring • Lessons • Studio Sessions</p>
+  <!-- HERO -->
+  <header class="hero" id="top" aria-label="Amasa Bruce Hero">
+    <div class="hero-inner">
+      <nav class="hero-actions" aria-label="Primary actions">
+        <a class="btn primary" href="#book">Book / Request Quote</a>
+        <a class="btn" href="#services">Services & Pricing</a>
+        <a class="btn ghost" href="#contact">Contact</a>
+        <a class="btn danger" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Email Now</a>
+      </nav>
+    </div>
+  </header>
 
-      <div class="chips" aria-label="Core services">
-        <span class="chip">Live Band</span>
-        <span class="chip">Studio Recording</span>
-        <span class="chip">Private Lessons</span>
-        <span class="chip">Backline &amp; Sound</span>
-      </div>
+  <!-- BOOKING -->
+  <section id="book">
+    <div class="wrap">
+      <h2 class="section-title">Booking Request</h2>
+      <p class="section-sub">
+        Fill this out and I’ll hit you back with availability + a clean quote.
+        (Fastest reply: email.)
+      </p>
 
-      <div class="cta">
-        <a class="btn primary" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Book Amasa</a>
-        <a class="btn secondary" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
+      <div class="grid">
+        <!-- FORM -->
+        <div class="panel">
+          <div class="panel-head">
+            <p class="small" style="margin:0 0 10px;">
+              Theme: black / yellow / white with a hint of red. :contentReference[oaicite:3]{index=3}
+            </p>
+          </div>
+          <div class="panel-body">
+            <!-- Netlify-friendly: will email you if you host on Netlify.
+                 If not using Netlify, this still works for custom handling later. -->
+            <form name="amasa-booking" method="POST" data-netlify="true">
+              <input type="hidden" name="form-name" value="amasa-booking" />
+
+              <div class="form-grid">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" placeholder="Full name" required />
+                </div>
+
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@email.com" required />
+                </div>
+
+                <div>
+                  <label for="phone">Phone (optional)</label>
+                  <input id="phone" name="phone" placeholder="(###) ###-####" />
+                </div>
+
+                <div>
+                  <label for="service">Service</label>
+                  <select id="service" name="service" required>
+                    <option value="" disabled selected>Select a service…</option>
+                    <option>Live Band for Hire (5-piece)</option>
+                    <option>Studio Session Musician (24hr turnaround)</option>
+                    <option>Touring</option>
+                    <option>Backline & Sound Rentals</option>
+                    <option>Lessons — Online</option>
+                    <option>Lessons — 1 on 1</option>
+                    <option>Lessons — Group (party of 6)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="date">Date</label>
+                  <input id="date" name="date" type="date" />
+                </div>
+
+                <div>
+                  <label for="location">Location</label>
+                  <input id="location" name="location" placeholder="City / Venue / Studio" />
+                </div>
+
+                <div>
+                  <label for="start">Start Time (optional)</label>
+                  <input id="start" name="start_time" placeholder="e.g. 8:00 PM" />
+                </div>
+
+                <div>
+                  <label for="duration">Estimated Duration</label>
+                  <input id="duration" name="duration" placeholder="e.g. 2 hours / 1 set / full day" />
+                </div>
+              </div>
+
+              <div style="margin-top:14px;">
+                <label for="details">Details</label>
+                <textarea id="details" name="details" placeholder="Tell me what you’re trying to do (event type, vibe, set length, tracks, rehearsal needs, etc.)."></textarea>
+              </div>
+
+              <div class="form-grid" style="margin-top:14px;">
+                <div>
+                  <label for="budget">Budget Range (optional)</label>
+                  <input id="budget" name="budget" placeholder="e.g. $500–$1,000" />
+                </div>
+
+                <div>
+                  <label for="contact_pref">Preferred Contact</label>
+                  <select id="contact_pref" name="contact_preference">
+                    <option>Email</option>
+                    <option>Phone</option>
+                    <option>Text</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button class="submit" type="submit">Submit Request</button>
+                <a class="btn ghost" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Or Email Instead</a>
+              </div>
+
+              <p class="small" style="margin:12px 0 0;">
+                By submitting, you’re requesting availability + a quote (no obligation).
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <!-- SERVICES & PRICING -->
+        <aside class="panel" id="services">
+          <div class="panel-body">
+            <h3 style="margin:0 0 8px;font-size:22px;font-weight:1000;">Services & Pricing</h3>
+            <p class="small" style="margin:0 0 14px;">
+              Based on your intake form. :contentReference[oaicite:4]{index=4}
+            </p>
+
+            <ul class="list">
+              <li class="pill"><b>Online Lessons</b><span class="price">$35 / hr</span></li>
+              <li class="pill"><b>Group Lessons (party of 6)</b><span class="price">$10 each</span></li>
+              <li class="pill"><b>Studio Session (24hr turnaround)</b><span class="price">$200</span></li>
+              <li class="pill"><b>Backline & Sound Rentals</b><span class="price">$500</span></li>
+              <li class="pill"><b>Live 5-Piece Band</b><span class="price">from $1000</span></li>
+            </ul>
+
+            <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,.10);padding-top:14px;">
+              <p class="small" style="margin:0 0 10px;">
+                Quote:
+                <span style="color:#fff;font-weight:900;">
+                  “You don’t get paid for hobbies, you get paid for being a professional.” — Rex Hardy Jr.
+                </span>
+                :contentReference[oaicite:5]{index=5}
+              </p>
+
+              <p class="small" style="margin:0;">
+                Extras (optional): sticks / merch, donations, play-along practice tracks. :contentReference[oaicite:6]{index=6}
+              </p>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
+  </section>
 
-    <!-- RIGHT: inside-the-box, evenly spaced collage -->
-    <div class="deck" aria-label="Performance collage">
-      <div class="deck-inner">
-        <div class="card-photo one"
-             style="--img:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/1c13c652-5936-4aee-be47-7e09141a9029/image0.jpeg?format=500w'); --pos-x:50%; --pos-y:20%;"></div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">
+        Quick links to reach me and see more work. :contentReference[oaicite:7]{index=7}
+      </p>
 
-        <div class="card-photo two"
-             style="--img:url('https://images.squarespace-cdn.com/content/v1/6880ea8a15b7fd1189e5bad9/c2ac6df3-81d2-4306-8c29-f5d4a6a59f4a/image2.jpeg?format=500w'); --pos-x:50%; --pos-y:20%;"></div>
+      <div class="panel">
+        <div class="panel-body">
+          <div class="footer-row">
+            <div>
+              <div style="font-weight:1000;font-size:18px;margin-bottom:6px;">Amasa Bruce</div>
+              <div class="small">Email: <a href="mailto:bruce_amasa@yahoo.com">bruce_amasa@yahoo.com</a></div>
+            </div>
+
+            <div class="links" aria-label="Social links">
+              <a class="link" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
+              <a class="link" href="#top">Back to Top</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div class="small">© <span id="year"></span> Amasa Bruce — Cavalry Sounds</div>
+      <div class="small">Built to be your everyday workhorse site. :contentReference[oaicite:8]{index=8}</div>
+    </div>
+  </footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
