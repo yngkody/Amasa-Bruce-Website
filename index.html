@@ -339,6 +339,102 @@
     flex-wrap:wrap;
     align-items:center;
   }
+  @media (max-width: 768px){
+
+  /* HERO: image gets full stage */
+  .hero{
+    height: 100svh;
+    min-height: 0;
+  }
+
+  /* use mobile hero image */
+  .hero::before{
+    background: url("amasa-hero-mobile.png") center top / cover no-repeat;
+  }
+
+  /* softer overlay so image stays crisp */
+  .hero::after{
+    background:
+      linear-gradient(180deg,
+        rgba(0,0,0,.10) 0%,
+        rgba(0,0,0,.10) 55%,
+        rgba(0,0,0,.55) 100%
+      );
+  }
+
+  /* ONLY keep primary CTA on hero */
+  .hero-actions .btn:not(.primary){ display:none; }
+
+  .hero-inner{
+    justify-content:center;
+    padding: 16px 14px calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .hero-actions{
+    width: min(420px, 92vw);
+    justify-content:center;
+    bottom: 0;              /* undo any previous pushing */
+  }
+
+  /* Make the primary CTA look modern + not bubbly */
+  .btn.primary{
+    width: 100%;
+    border-radius: 10px;
+    font-size: 13px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 14px 16px;
+
+    background: #ffd400;
+    color:#111;
+    border: 1px solid #ffd400;
+
+    /* remove “glassy blur” on mobile (it reads messy) */
+    backdrop-filter: none;
+    box-shadow: 0 18px 50px rgba(0,0,0,.45);
+  }
+
+  /* mobile action bar under hero */
+  .mobile-actions{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+    padding: 14px 14px;
+    background: #07070a;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+
+  .mbtn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+
+    border: 1px solid rgba(255,255,255,.20);
+    background: rgba(255,255,255,.06);
+    color:#fff;
+
+    border-radius: 10px;
+    padding: 12px 10px;
+
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .mbtn.danger{
+    border-color: rgba(255,59,48,.6);
+    color: #ff3b30;
+    background: rgba(255,59,48,.10);
+  }
+
+  /* hide bar on desktop */
+  @media (min-width: 769px){
+    .mobile-actions{ display:none; }
+  }
+}
+
 </style>
 </head>
 
@@ -355,6 +451,12 @@
       </nav>
     </div>
   </header>
+<!-- MOBILE ACTION BAR (only shows on mobile) -->
+<div class="mobile-actions" aria-label="Mobile actions">
+  <a class="mbtn" href="#youtube">YouTube</a>
+  <a class="mbtn" href="#services">Services</a>
+  <a class="mbtn danger" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Email</a>
+</div>
 
   <!-- YOUTUBE -->
   <section id="youtube">
