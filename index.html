@@ -31,21 +31,18 @@
   .wrap{width:min(1180px,92vw);margin:0 auto}
 
   /* ===== HERO (image-only with buttons) ===== */
-  .hero{
-    position:relative;
-    min-height:92vh;
-    display:flex;
-    align-items:stretch;
-    background:#000;
-    overflow:hidden;
-  }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background:
-      url("amasa-hero-ii.png") center/cover no-repeat;
-    transform:scale(1.01);
-  }
+.hero{
+  height:clamp(100vh, 120vh, 140vh);
+}
+
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: url("amasa-hero.png") center bottom / cover no-repeat;
+}
+
   /* subtle film overlay so buttons read on any part of image */
   .hero::after{
     content:"";
