@@ -7,17 +7,17 @@
 
 <style>
   :root{
-    --bg:#0b0c0f;
-    --panel:#0f1117;
+    --bg:#07070a;
+    --panel:rgba(10,10,14,.70);
     --ink:#ffffff;
-    --muted:#cfd3dd;
+    --muted:rgba(255,255,255,.75);
 
     --yellow:#ffd400;
-    --yellow-2:#ffea66;
+    --yellow2:#ffea66;
     --red:#ff3b30;
 
     --stroke:rgba(255,255,255,.14);
-    --stroke-2:rgba(255,255,255,.22);
+    --stroke2:rgba(255,255,255,.24);
     --shadow:0 24px 70px rgba(0,0,0,.45);
 
     --radius:18px;
@@ -26,91 +26,93 @@
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
   body{font:16px/1.55 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif}
-
   a{color:inherit}
   .wrap{width:min(1180px,92vw);margin:0 auto}
 
-  /* ===== HERO (image-only with buttons) ===== */
-.hero{
-  position:relative;
-  min-height:100vh;
-  background:#000;
-}
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    height:100vh;              /* full screen */
+    min-height:640px;
+    overflow:hidden;
+    background:#000;           /* fallback while image loads */
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      url("amasa-hero-ii.png") center / cover no-repeat;  /* NO BARS, fills screen */
+    transform:scale(1.001);     /* tiny to avoid 1px seams, not enough to crop noticeably */
+  }
 
-
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: url("amasa-hero-ii.png") center / contain no-repeat;
-}
-
-
-  /* subtle film overlay so buttons read on any part of image */
+  /* light overlay ONLY (not heavy film) */
   .hero::after{
     content:"";
-    position:absolute; inset:0;
+    position:absolute;
+    inset:0;
     background:
-      radial-gradient(80% 65% at 80% 85%, rgba(0,0,0,.55) 0%, rgba(0,0,0,.12) 55%, rgba(0,0,0,.00) 72%),
-      linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.35) 100%);
+      radial-gradient(70% 60% at 75% 85%, rgba(0,0,0,.40) 0%, rgba(0,0,0,.10) 55%, rgba(0,0,0,0) 75%),
+      linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.18) 100%);
     pointer-events:none;
   }
 
   .hero-inner{
     position:relative;
-    width:100%;
+    height:100%;
     display:flex;
     align-items:flex-end;
     justify-content:flex-end;
-    padding:clamp(18px,4vw,40px);
+    padding:clamp(18px,4vw,44px);
   }
 
   .hero-actions{
     display:flex;
     flex-wrap:wrap;
     gap:12px;
-    max-width:min(520px, 92vw);
+    max-width:min(560px, 92vw);
     justify-content:flex-end;
   }
 
+  /* ===== BUTTONS (more editorial / artist, less Amazon) ===== */
   .btn{
     appearance:none;
-    border:2px solid rgba(255,212,0,.7);
-    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.22);
+    background:rgba(10,10,14,.35);
     color:var(--ink);
-    font-weight:900;
-    letter-spacing:.01em;
+    font-weight:950;
+    letter-spacing:.02em;
     padding:12px 16px;
-    border-radius:14px;
+    border-radius:999px;
     cursor:pointer;
     text-decoration:none;
     display:inline-flex;
     align-items:center;
     justify-content:center;
     gap:10px;
-    box-shadow:0 14px 40px rgba(0,0,0,.35);
-    backdrop-filter: blur(10px) saturate(1.1);
-    transition:transform .12s ease, filter .12s ease, background .12s ease;
+    backdrop-filter: blur(10px) saturate(1.2);
+    box-shadow:0 18px 55px rgba(0,0,0,.35);
+    transition:transform .14s ease, background .14s ease, border-color .14s ease;
   }
-  .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+  .btn:hover{transform:translateY(-2px);background:rgba(10,10,14,.50);border-color:rgba(255,255,255,.32)}
+  .btn:active{transform:translateY(0px)}
+
   .btn.primary{
-    background:linear-gradient(180deg, var(--yellow), #ffb800);
-    color:#0b0c0f;
-    border-color:transparent;
+    border-color:rgba(255,212,0,.65);
+    background:rgba(255,212,0,.14);
   }
+  .btn.primary:hover{background:rgba(255,212,0,.18);border-color:rgba(255,212,0,.9)}
   .btn.ghost{
-    background:rgba(0,0,0,.35);
-    border-color:rgba(255,255,255,.20);
+    background:rgba(10,10,14,.25);
   }
   .btn.danger{
-    border-color:rgba(255,59,48,.7);
+    border-color:rgba(255,59,48,.55);
+    background:rgba(255,59,48,.10);
   }
+  .btn.danger:hover{border-color:rgba(255,59,48,.85);background:rgba(255,59,48,.16)}
 
   /* ===== SECTIONS ===== */
-  section{
-    padding:clamp(44px,7vw,84px) 0;
-  }
+  section{padding:clamp(44px,7vw,84px) 0}
   .section-title{
     font-size:clamp(24px,3.4vw,38px);
     line-height:1.12;
@@ -121,8 +123,8 @@
   .section-sub{
     margin:0 0 26px;
     color:var(--muted);
-    font-weight:700;
-    max-width:70ch;
+    font-weight:750;
+    max-width:72ch;
   }
 
   .grid{
@@ -133,26 +135,20 @@
   }
   @media (max-width:900px){
     .grid{grid-template-columns:1fr}
-    .hero{min-height:78vh}
     .hero-inner{justify-content:center}
     .hero-actions{justify-content:center}
   }
 
   .panel{
-    background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
     border:1px solid var(--stroke);
     border-radius:var(--radius);
     box-shadow:var(--shadow);
     overflow:hidden;
   }
-  .panel-head{
-    padding:18px 18px 0;
-  }
-  .panel-body{
-    padding:18px;
-  }
+  .panel-body{padding:18px}
 
-  /* ===== SERVICES LIST ===== */
+  /* ===== PRICING ===== */
   .list{
     display:grid;
     gap:10px;
@@ -168,17 +164,10 @@
     padding:14px 14px;
     border-radius:14px;
     border:1px solid var(--stroke);
-    background:rgba(0,0,0,.25);
+    background:rgba(0,0,0,.18);
   }
-  .pill b{
-    font-weight:1000;
-    letter-spacing:.01em;
-  }
-  .price{
-    color:var(--yellow-2);
-    font-weight:1000;
-    white-space:nowrap;
-  }
+  .pill b{font-weight:1000;letter-spacing:.01em}
+  .price{color:var(--yellow2);font-weight:1000;white-space:nowrap}
 
   /* ===== FORM ===== */
   form{margin:0}
@@ -191,27 +180,26 @@
 
   label{
     display:block;
-    font-weight:900;
+    font-weight:950;
     letter-spacing:.01em;
     margin:0 0 8px;
     color:#fff;
   }
-
   input, select, textarea{
     width:100%;
-    background:rgba(0,0,0,.35);
+    background:rgba(0,0,0,.22);
     color:#fff;
-    border:1px solid var(--stroke-2);
+    border:1px solid var(--stroke2);
     border-radius:14px;
-    padding:12px 12px;
+    padding:13px 12px;
     font-size:16px;
-    font-weight:750;          /* thick + readable */
+    font-weight:800;          /* thick + readable */
     outline:none;
   }
   input::placeholder, textarea::placeholder{color:rgba(255,255,255,.55);font-weight:750}
   input:focus, select:focus, textarea:focus{
-    border-color:rgba(255,212,0,.75);
-    box-shadow:0 0 0 4px rgba(255,212,0,.12);
+    border-color:rgba(255,212,0,.85);
+    box-shadow:0 0 0 4px rgba(255,212,0,.14);
   }
   textarea{min-height:120px;resize:vertical}
 
@@ -222,20 +210,61 @@
     margin-top:14px;
   }
   .submit{
-    background:linear-gradient(180deg, var(--yellow), #ffb800);
-    color:#0b0c0f;
-    border:none;
+    background:rgba(255,212,0,.16);
+    border:1px solid rgba(255,212,0,.75);
+    color:#fff;
     font-weight:1000;
-    border-radius:14px;
+    border-radius:999px;
     padding:12px 16px;
     cursor:pointer;
     box-shadow:0 18px 46px rgba(0,0,0,.40);
+    transition:transform .14s ease, background .14s ease, border-color .14s ease;
   }
-  .small{
-    font-size:14px;
-    color:rgba(255,255,255,.75);
-    font-weight:700;
+  .submit:hover{transform:translateY(-2px);background:rgba(255,212,0,.20);border-color:rgba(255,212,0,.95)}
+  .submit:active{transform:translateY(0px)}
+
+  .small{font-size:14px;color:rgba(255,255,255,.75);font-weight:750}
+
+  /* ===== YOUTUBE ===== */
+  .yt-wrap{
+    display:grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap:clamp(16px,3vw,26px);
+    align-items:start;
   }
+  @media (max-width:900px){ .yt-wrap{grid-template-columns:1fr} }
+
+  .yt-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio: 16 / 9;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.16);
+    background:#000;
+    box-shadow:var(--shadow);
+  }
+  .yt-frame iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+
+  .link-chip{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 14px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(0,0,0,.16);
+    text-decoration:none;
+    font-weight:950;
+  }
+  .link-chip span{color:rgba(255,255,255,.70);font-weight:800}
 
   /* ===== FOOTER ===== */
   footer{
@@ -250,20 +279,6 @@
     flex-wrap:wrap;
     align-items:center;
   }
-  .links{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-  }
-  .link{
-    padding:10px 12px;
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:999px;
-    text-decoration:none;
-    font-weight:900;
-    color:#fff;
-    background:rgba(0,0,0,.25);
-  }
 </style>
 </head>
 
@@ -274,12 +289,56 @@
     <div class="hero-inner">
       <nav class="hero-actions" aria-label="Primary actions">
         <a class="btn primary" href="#book">Book / Request Quote</a>
-        <a class="btn" href="#services">Services & Pricing</a>
-        <a class="btn ghost" href="#contact">Contact</a>
+        <a class="btn" href="#youtube">YouTube</a>
+        <a class="btn ghost" href="#services">Services</a>
         <a class="btn danger" href="mailto:bruce_amasa@yahoo.com?subject=Booking%20Inquiry%20—%20Amasa%20Bruce">Email Now</a>
       </nav>
     </div>
   </header>
+
+  <!-- YOUTUBE -->
+  <section id="youtube">
+    <div class="wrap">
+      <h2 class="section-title">Watch Amasa</h2>
+      <p class="section-sub">
+        Recent videos, performances, and drum content.
+      </p>
+
+      <div class="yt-wrap">
+        <div class="yt-frame" aria-label="YouTube player">
+          <!-- Uploads playlist trick: channelId UC... => uploads list UU... -->
+          <iframe
+            src="https://www.youtube.com/embed?listType=playlist&list=UUbsfmFltCjiXDELGH7o_8yA"
+            title="Amasa Bruce YouTube uploads"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="panel">
+          <div class="panel-body">
+            <h3 style="margin:0 0 12px;font-size:22px;font-weight:1000;">Channel</h3>
+
+            <a class="link-chip" target="_blank" rel="noopener"
+               href="https://www.youtube.com/channel/UCbsfmFltCjiXDELGH7o_8yA">
+              Visit Channel <span>→</span>
+            </a>
+
+            <div style="height:10px"></div>
+
+            <a class="link-chip" target="_blank" rel="noopener"
+               href="https://www.youtube.com/channel/UCbsfmFltCjiXDELGH7o_8yA?sub_confirmation=1">
+              Subscribe <span>→</span>
+            </a>
+
+            <div style="margin-top:14px" class="small">
+              If you want this section to feature a specific video first, send me the link and I’ll pin it.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- BOOKING -->
   <section id="book">
@@ -293,14 +352,7 @@
       <div class="grid">
         <!-- FORM -->
         <div class="panel">
-          <div class="panel-head">
-            <p class="small" style="margin:0 0 10px;">
-              Theme: black / yellow / white with a hint of red. :contentReference[oaicite:3]{index=3}
-            </p>
-          </div>
           <div class="panel-body">
-            <!-- Netlify-friendly: will email you if you host on Netlify.
-                 If not using Netlify, this still works for custom handling later. -->
             <form name="amasa-booking" method="POST" data-netlify="true">
               <input type="hidden" name="form-name" value="amasa-booking" />
 
@@ -357,7 +409,7 @@
 
               <div style="margin-top:14px;">
                 <label for="details">Details</label>
-                <textarea id="details" name="details" placeholder="Tell me what you’re trying to do (event type, vibe, set length, tracks, rehearsal needs, etc.)."></textarea>
+                <textarea id="details" name="details" placeholder="Event type, vibe, set length, rehearsal needs, tracks, etc."></textarea>
               </div>
 
               <div class="form-grid" style="margin-top:14px;">
@@ -393,7 +445,7 @@
           <div class="panel-body">
             <h3 style="margin:0 0 8px;font-size:22px;font-weight:1000;">Services & Pricing</h3>
             <p class="small" style="margin:0 0 14px;">
-              Based on your intake form. :contentReference[oaicite:4]{index=4}
+              Quick reference pricing.
             </p>
 
             <ul class="list">
@@ -405,16 +457,8 @@
             </ul>
 
             <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,.10);padding-top:14px;">
-              <p class="small" style="margin:0 0 10px;">
-                Quote:
-                <span style="color:#fff;font-weight:900;">
-                  “You don’t get paid for hobbies, you get paid for being a professional.” — Rex Hardy Jr.
-                </span>
-                :contentReference[oaicite:5]{index=5}
-              </p>
-
               <p class="small" style="margin:0;">
-                Extras (optional): sticks / merch, donations, play-along practice tracks. :contentReference[oaicite:6]{index=6}
+                Email: <a href="mailto:bruce_amasa@yahoo.com">bruce_amasa@yahoo.com</a>
               </p>
             </div>
           </div>
@@ -427,9 +471,7 @@
   <section id="contact">
     <div class="wrap">
       <h2 class="section-title">Contact</h2>
-      <p class="section-sub">
-        Quick links to reach me and see more work. :contentReference[oaicite:7]{index=7}
-      </p>
+      <p class="section-sub">Quick links.</p>
 
       <div class="panel">
         <div class="panel-body">
@@ -439,9 +481,9 @@
               <div class="small">Email: <a href="mailto:bruce_amasa@yahoo.com">bruce_amasa@yahoo.com</a></div>
             </div>
 
-            <div class="links" aria-label="Social links">
-              <a class="link" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
-              <a class="link" href="#top">Back to Top</a>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn ghost" href="https://instagram.com/Gtm_masa" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn ghost" href="#top">Back to Top</a>
             </div>
           </div>
         </div>
@@ -452,8 +494,8 @@
 
   <footer>
     <div class="wrap footer-row">
-      <div class="small">© <span id="year"></span> Amasa Bruce — Cavalry Sounds</div>
-      <div class="small">Built to be your everyday workhorse site. :contentReference[oaicite:8]{index=8}</div>
+      <div class="small">© <span id="year"></span> Amasa Bruce</div>
+      <div class="small">Cavalry Sounds</div>
     </div>
   </footer>
 
