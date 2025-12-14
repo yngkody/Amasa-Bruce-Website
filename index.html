@@ -37,14 +37,14 @@
     overflow:hidden;
     background:#000;           /* fallback while image loads */
   }
-  .hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-      url("amasa-hero-ii.png") center / cover no-repeat;  /* NO BARS, fills screen */
-    transform:scale(1.001);     /* tiny to avoid 1px seams, not enough to crop noticeably */
-  }
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: url("amasa-hero-ii.png") center bottom / cover no-repeat;
+  transform:none; /* important: prevents extra cropping */
+}
+
 
   /* light overlay ONLY (not heavy film) */
   .hero::after{
